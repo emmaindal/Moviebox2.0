@@ -1,29 +1,12 @@
-var http = require('http');
+console.log("Starting server.js");
 
-function getData(callback, res){
+const http = require('http');
+const matapi = require('./matapi.js');
+const filmapi = require('./filmapi.js')
 
-    var id = '1544';
-    return http.get({
-        host: 'matapi.se',
-        path: '/foodstuff/' + id
-    }, function(response) {
-        var body = '';
-        response.on('data', function(d){
-            body += d;
-        });
-        response.on('end', function() {
-            var dataResponse = JSON.parse(body);
-            //res.write(dataResponse)
-            // console.log(dataResponse[5].name);
+console.log("-------------------------")
 
-            //for(i = 0; i < dataResponse.length; i++){
-            console.log(dataResponse.name);
-            //}
+matapi.getFood()
+filmapi.getMovie()
 
-            //}
-
-        });
-    });
-
-};
-http.createServer(getData).listen(3000);
+http.createServer().listen(3000);
