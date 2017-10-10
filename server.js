@@ -1,12 +1,20 @@
 console.log("Starting server.js");
 
-const http = require('http');
+var express = require('express');
+var app = express();
+
 const matapi = require('./matapi.js');
 const filmapi = require('./filmapi.js');
 
+
 console.log("-------------------------");
+
 
 matapi.getFood();
 filmapi.getMovie();
 
-http.createServer().listen(3000);
+app.use(express.static('./public/client')
+    
+);
+
+app.listen(3000);
