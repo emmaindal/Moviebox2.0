@@ -1,6 +1,7 @@
 console.log("Starting server.js");
 
 var express = require('express');
+var fetch = require('fetch');
 var app = express();
 
 const matapi = require('./matapi.js');
@@ -11,10 +12,11 @@ console.log("-------------------------");
 
 
 matapi.getFood();
-filmapi.getMovie();
+console.log(filmapi.getMovie());
 
-app.use(express.static('./public/client')
-    
-);
+
+app.use(express.static('./public/client'));
+
+
 
 app.listen(3000);

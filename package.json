@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/emmaindal/Moviebox2.0#readme",
   "dependencies": {
-    "materialize-css": "^0.100.2"
+    "fetch": "^1.1.0",
+    "materialize-css": "^0.100.2",
+    "node-fetch": "^1.7.3"
   }
 }
