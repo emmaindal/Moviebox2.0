@@ -1,20 +1,31 @@
 console.log("Starting filmapi.js");
 const http = require('http');
 const fs = require('fs');
+const fetch = require('node-fetch');
 
 module.exports.getMovie = (callback, res) => {
-    // Fast and Furious 10 verkar vara senast tillagda. ID 5433140
-    // Slumpar ett nummer mellan 1000000 och 5433140
-    // bör vara sortering efter error då alla värden inte har film
-    // bör även vara sortering efter TYPE då episoder och filmer delar id
-    //var movieId =  Math.floor(Math.random() * 5433140);
-
     //Fil med 9000imdb ID läses in. Görs till lista. Slumpar lista
     var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
     var movieId = movieList[Math.floor(Math.random()*movieList.length)];
+
+    var hej = fetch('http://omdbapi.com/?i=tt'+ movieId + '&apikey=6397a4d9')
+        // Hämtar info från omdbapi
+        // när fetch är klart kör den funktionen som tar en variabel (response från fetch)
+        // och .json omvandlar den till till json
+        // SRC ::: http://blogs.missouristate.edu/cio/2016/01/14/fetching-data-over-http-with-nodejs-using-node-fetch/
+        .then(function(movieInfo){
+            return movieInfo.json();
+        })
+        .then(function(json){
+            console.log('Film: ' + json.Title + '\n' +
+                'Årtal: ' + json.Released + '\n' +
+                'Genres : ' + json.Genre);
+        });
+
+
     //var title = 'Titanic';
 
-    return http.get({
+    /*return http.get({
         host: 'omdbapi.com',
         path: '/?i=tt' + movieId + '&apikey=6397a4d9'
     }, function(response) {
@@ -29,5 +40,5 @@ module.exports.getMovie = (callback, res) => {
                 'Genres : ' + dataResponse.Genre);
         });
     });
-
+*/
 }

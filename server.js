@@ -4,11 +4,16 @@ const http = require('http');
 const axios = require('axios');
 
 var express = require('express');
+
 var request = require('request');
+=======
+var fetch = require('fetch');
+
 var app = express();
 
 const matapi = require('./matapi.js');
 const filmapi = require('./filmapi.js');
+
 
 app.use(express.static('./public/client'));
 
@@ -45,3 +50,18 @@ app.get('/showMovie', function (req, res) {
 app.listen(3000, function(){
     console.log("Listening on port 3000")
 });
+=======
+
+console.log("-------------------------");
+
+
+matapi.getFood();
+console.log(filmapi.getMovie());
+
+
+app.use(express.static('./public/client'));
+
+
+
+app.listen(3000);
+
