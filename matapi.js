@@ -1,5 +1,9 @@
 console.log("Starting matapi.js");
-const fetch = require('node-fetch');
+
+const http = require('http');
+var express = require('express');
+var request = require('request');
+var app = express();
 
 module.exports.getFood = (callback, res) => {
     // diverse snacksID från matapis hemsida, bör kompletteras.
@@ -28,6 +32,7 @@ module.exports.getFood = (callback, res) => {
             var dataResponse = JSON.parse(body);
             //for(i = 0; i < dataResponse.length; i++){
             console.log("Snacks: " + dataResponse.name);
+
             console.log("-------------------------")
             //}
 
