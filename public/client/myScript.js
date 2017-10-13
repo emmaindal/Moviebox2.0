@@ -1,5 +1,6 @@
 var snacksBtn = document.getElementById('snacksBtn');
 
+
 snacksBtn.addEventListener('click', function (event) {
     axios.get('/showSnacks')
       .then(data => {

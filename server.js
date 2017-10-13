@@ -2,13 +2,14 @@ console.log("Starting server.js");
 
 const http = require('http');
 const axios = require('axios');
-
 var express = require('express');
 var request = require('request');
+
 var app = express();
 
 const matapi = require('./matapi.js');
 const filmapi = require('./filmapi.js');
+
 
 app.use(express.static('./public/client'));
 

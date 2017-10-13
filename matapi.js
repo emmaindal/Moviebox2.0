@@ -5,6 +5,9 @@ var express = require('express');
 var request = require('request');
 var app = express();
 
+const fetch = require('node-fetch');
+
+
 module.exports.getFood = (callback, res) => {
     // diverse snacksID från matapis hemsida, bör kompletteras.
     var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
