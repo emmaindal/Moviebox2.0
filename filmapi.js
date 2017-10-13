@@ -2,7 +2,7 @@ console.log("Starting filmapi.js");
 const http = require('http');
 const fs = require('fs');
 const fetch = require('node-fetch');
-
+/*
 module.exports.getMovie = (callback, res) => {
     //Fil med 9000imdb ID läses in. Görs till lista. Slumpar lista
     var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
@@ -21,24 +21,4 @@ module.exports.getMovie = (callback, res) => {
                 'Årtal: ' + json.Released + '\n' +
                 'Genres : ' + json.Genre);
         });
-
-
-    //var title = 'Titanic';
-
-    /*return http.get({
-        host: 'omdbapi.com',
-        path: '/?i=tt' + movieId + '&apikey=6397a4d9'
-    }, function(response) {
-        var body = '';
-        response.on('data', function(d){
-            body += d;
-        });
-        response.on('end', function() {
-            var dataResponse = JSON.parse(body);
-            console.log('Film: ' + dataResponse.Title + '\n' +
-                'Årtal ' + dataResponse.Released + '\n' +
-                'Genres : ' + dataResponse.Genre);
-        });
-    });
-*/
-}
+}*/
