@@ -3,6 +3,7 @@ console.log("Starting server.js");
 const axios = require('axios');
 var express = require('express');
 const fs = require('fs');
+var youtube = require('./youtubeapi.js');
 
 var app = express();
 
@@ -18,8 +19,7 @@ app.get('/showSnacks', function myFunction(req, res){
     var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
     const url = 'http://matapi.se/foodstuff/' + randomId;
 
-    axios
-        .get(url)
+    axios.get(url)
         .then(response => {res.send(response.data.name)})
 });
 
@@ -27,11 +27,29 @@ app.get('/showMovie', function (req, res) {
     var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
     var movieId = movieList[Math.floor(Math.random()*movieList.length)];
     const url = 'http://omdbapi.com/?i=tt' + movieId + '&apikey=6397a4d9';
-    axios
-        .get(url)
-        .then(response => {res.send(response.data)})
+
+    axios.get(url)
+        .then(function (response) {
+            // kör funktionen getTrailer, detta resulterar i respons med korrekt filminfo i konsoll
+            // har ej lyckats få ut datan från youtubeapi.js
+            var trailerInfo = getTrailer(response.data);
+
+            // skapar en lista för att kunna skicka med 2 parametrar med res.send (res.send stödjer endast 1 return värde)
+            var array = {
+                trailerInfo: trailerInfo,
+                movieInfo: response.data
+            };
+            res.send(array)});
 });
 
+
+function getTrailer(data) {
+    console.log('filmtitel: ' + data.Title + ' år den släpptes: ' + data.Released);
+
+    return youtube.search(data.Title, data.Year);
+
+}
+
 app.listen(3000, function(){
-    console.log("Listening on port 3000")
+    console.log("Listening on port 3000");
 });
