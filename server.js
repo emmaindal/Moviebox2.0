@@ -1,4 +1,3 @@
-console.log("Starting server.js");
 
 const axios = require('axios');
 var express = require('express');
@@ -44,6 +43,8 @@ app.get('/showMovie', function (req, res) {
 });
 
 
+console.log("Starting server.js");
+
 function getTrailer(movieData, callback) {
     console.log('filmtitel: ' + movieData.Title + ' år den släpptes: ' + movieData.Year);
     return youtube.search(movieData.Title, movieData.Year, function (data) {
@@ -51,7 +52,6 @@ function getTrailer(movieData, callback) {
         callback(youtubeId);
     });
 }
-
 
 app.listen(3000, function(){
     console.log("Listening on port 3000");
