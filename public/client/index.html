@@ -4,26 +4,48 @@
     <meta charset="utf-8">
     <title>MOVIEBOX</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
 
 </head>
 <body>
     <div class="row">
-      <div class="col s12">
-          <h1 class="text-primary center-align">MOVIEBOX</h1>
-      </div>
-      <div class="col s12 center-align">
-          <button id="movieBtn" type="button" name="button" class="waves-effect waves-light btn orange darken-1">GE MIG FILMTIPS!</button>
-          <button id="snacksBtn" type="button" name="button" class="waves-effect waves-light btn green darken-1">GE MIG SNACKSTIPS!</button>
-
-      </div>
-        <div id="getResult1">
-
+        <div class="col s12">
+            <h1 class="text-primary center-align">MOVIEBOX</h1>
         </div>
+        <div class="col s12 center-align">
+            <button id="movieBtn" data-target="modal1" type="button" name="button" class="waves-effect waves-light btn orange darken-1 modal-trigger">GE MIG FILMTIPS!</button>
+        </div>
+
+        <!-- Modal Structure -->
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <div id="getResult1">
+
+                </div>
+                <div id="getResult2">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="snacksBtn" type="button" name="button" class="waves-effect waves-light btn green darken-1">GE MIG SNACKSTIPS</button>
+                <button id="trailerBtn" type="button" name="button" class="waves-effect waves-light btn green darken-1">SE TRAILER</button>
+            </div>
+        </div>
+
+
+
+
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="myScript.js"></script>
-    
+
 
 </body>
 
