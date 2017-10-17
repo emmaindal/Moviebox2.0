@@ -38,3 +38,19 @@ function generateMovieHTMLOutput(response) {
         '<pre>' + '<h6>År:</h6>' + JSON.stringify(response.data.Released, null, '\t') + '</pre>' +
         '<pre>' + '<h6>Genre:</h6>' + JSON.stringify(response.data.Genre, null, '\t') + '</pre>';
 }
+        .then(function (array) {
+            // skapar två olika varaibler från listan som returneras från server.js
+            // Genererar HTML baserat på tidigare värden
+            displayMovieElement.innerHTML = generateMovieHTMLOutput(array.data.movieInfo, array.data.youtubeId);
+        })
+});
+
+function generateMovieHTMLOutput(movie, youtubeId) {
+    return  '<h4> DIN FILM! </h4>' +
+        '<pre>' + JSON.stringify(movie.Title, null, '\t') + '</pre>' +
+        '<pre>' + JSON.stringify(movie.Year, null, '\t') + '</pre>' +
+        '<pre>' + JSON.stringify(movie.Genre, null, '\t') + '</pre>' +
+        // istället för X_68miSOU78 ska en variabel från trailer.xxx.xxx in
+        // har ej lyckats utvinna denna från youtubeapi.js
+        '<iframe width="560" height="315" src="https://www.youtube.com/embed/X_68miSOU78" frameborder="0" allowfullscreen>' + '</iframe>';
+}
