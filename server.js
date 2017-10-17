@@ -25,30 +25,33 @@ app.get('/showSnacks', function myFunction(req, res){
 
 app.get('/showMovie', function (req, res) {
     var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
-    var movieId = movieList[Math.floor(Math.random()*movieList.length)];
+    var movieId = movieList[Math.floor(Math.random() * movieList.length)];
     const url = 'http://omdbapi.com/?i=tt' + movieId + '&apikey=6397a4d9';
 
     axios.get(url)
         .then(function (response) {
             // kör funktionen getTrailer, detta resulterar i respons med korrekt filminfo i konsoll
             // har ej lyckats få ut datan från youtubeapi.js
-            var trailerInfo = getTrailer(response.data);
-
-            // skapar en lista för att kunna skicka med 2 parametrar med res.send (res.send stödjer endast 1 return värde)
-            var array = {
-                trailerInfo: trailerInfo,
-                movieInfo: response.data
-            };
-            res.send(array)});
+            getTrailer(response.data, function (youtubeId) {
+                // skapar en lista för att kunna skicka med 2 parametrar med res.send (res.send stödjer endast 1 return värde)
+                var array = {
+                    youtubeId: youtubeId,
+                    movieInfo: response.data
+                };
+                res.send(array)
+            });
+        });
 });
 
 
-function getTrailer(data) {
-    console.log('filmtitel: ' + data.Title + ' år den släpptes: ' + data.Released);
-
-    return youtube.search(data.Title, data.Year);
-
+function getTrailer(movieData, callback) {
+    console.log('filmtitel: ' + movieData.Title + ' år den släpptes: ' + movieData.Year);
+    return youtube.search(movieData.Title, movieData.Year, function (data) {
+        var youtubeId = data.items[0].id.videoId;
+        callback(youtubeId);
+    });
 }
+
 
 app.listen(3000, function(){
     console.log("Listening on port 3000");

@@ -10,10 +10,10 @@ var youtube = google.youtube({
 });
 var exports = module.exports  = {};
 
-exports.search = function (movieName, movieYear) {
+exports.search = function(movieName, movieYear, callback) {
     youtube.search.list({
         part: 'snippet',
-        maxResults: 3,
+        maxResults: 1,
         // Sätter in filmnamnet och året i search Query samt movie trailer. T.ex 'James bond 1998 movie trailer'
         q: `${movieName} ${movieYear} movie trailer`,
         key: API_KEY
@@ -22,14 +22,10 @@ exports.search = function (movieName, movieYear) {
             console.error('Error: ' + err);
         }
         if (data) {
-            console.log('Youtube search is running')
-            //console.log(util.inspect(data, false, null));
+            console.log('Youtube search is running');
+            callback(data)
         }
-
     })
 };
-
-
-
 
 
