@@ -1,4 +1,3 @@
-console.log("Starting server.js");
 
 const axios = require('axios');
 var express = require('express');
@@ -31,6 +30,8 @@ app.get('/showMovie', function (req, res) {
         .get(url)
         .then(response => {res.send(response.data)})
 });
+
+console.log("Starting server.js");
 
 app.listen(3000, function(){
     console.log("Listening on port 3000")
