@@ -16,12 +16,15 @@ h4, h5{
 h6{
     color: black;
     font-size: 25px;
+    padding-bottom: 2%;
+    color: rgb(0, 7, 97);
 }
 
 p{
     text-align: center;
-    padding-bottom: 5%;
     color: rgb(0, 18, 255);
+    padding-bottom: 5%;
+
 }
 
 #movieBtn{

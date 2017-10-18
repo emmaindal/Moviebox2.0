@@ -41,9 +41,9 @@ movieBtn.addEventListener('click', function (event) {
 function generateMovieHTMLOutput(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId;
     return  '<h5> Rekommenderad film </h5>' +
-        '<pre>' + '<h6> Titel: ' + movie.Title + '</h6>' + '</pre>' +
-        '<pre>' + '<h6> År: ' + movie.Year + '</h6>' + '</pre>' +
-        '<pre>' + '<h6> Genre: ' + movie.Genre + '</h6>' + '</pre>' +
-        '<pre>' + '<h6> Plot: ' + movie.Plot + '</h6>' + '</pre>' +
-        '<iframe width="400" height="245" src="'+urlPath+'" frameborder="0" allowfullscreen>' + '</iframe>';
+        '<h6> Titel: ' + movie.Title + '</h6>' +
+        '<h6> År: ' + movie.Year + '</h6>'+
+        '<h6> Genre: ' + movie.Genre + '</h6>' +
+        '<h6> Handling: ' + movie.Plot + '</h6>'+
+        '<iframe width="550" height="365" src="'+urlPath+'" frameborder="0" allowfullscreen>' + '</iframe>';
 }
