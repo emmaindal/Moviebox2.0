@@ -37,13 +37,10 @@ exports.findMovie = function (callback) {
                 } else {
                     findMovie();
                 }
-
-
             })
     }
     findMovie()
 };
-
 
 function getTrailer(movieData, callback) {
     console.log('filmtitel: ' + movieData.Title + ' år den släpptes: ' + movieData.Year);

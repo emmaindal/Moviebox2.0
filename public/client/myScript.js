@@ -4,24 +4,27 @@ var newMovie = document.getElementById('newMovie');
 
 snacksBtn.addEventListener('click', function (event) {
     var displaySnacksElement = document.getElementById('getResult2');
-    displaySnacksElement.innerHTML = '';
 
     axios.get('/showSnacks')
         .then(snacks => {
         var snacksobj = JSON.stringify(snacks.data).slice(1, -1);
-        displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
+        displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj);
 })
 });
 
 function generateSnacksHTMLOutput(response) {
     return  '<h5> Rekommenderat filmsnacks: </h5>' +
-        '<pre>' + response + '</pre>';
+            '<h6>' + response + '</h6>';
 }
 
 
 movieBtn.addEventListener('click', function (event) {
     // SRC generate html :::: https://medium.com/codingthesmartway-com-blog/getting-started-with-axios-166cb0035237
     var displayMovieElement = document.getElementById('getResult1');
+    var displaySnacksElement = document.getElementById('getResult2');
+    
+    displaySnacksElement.innerHTML = '';
+
     $('.modal').modal();
     displayMovieElement.innerHTML = '';
     axios.get('/showMovie')
