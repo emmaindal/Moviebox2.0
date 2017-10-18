@@ -22,12 +22,11 @@ exports.findMovie = function (callback) {
                     getTrailer(response.data, function (youtubeId) {
                         // skapar en lista för att kunna skicka med 2 parametrar med res.send (res.send stödjer endast 1 return värde)
                         var movieArray = {
-                            Title : JSON.stringify(response.data.Title).replace(/\"/g, ""),
-                            Year : JSON.stringify(response.data.Year).replace(/\"/g, ""),
-                            Genre : JSON.stringify(response.data.Genre).replace(/\"/g, ""),
-                            Plot : JSON.stringify(response.data.Plot).replace(/\"/g, "")
+                            Title : JSON.stringify(response.data.Title).slice(1, -1),
+                            Year : JSON.stringify(response.data.Year).slice(1, -1),
+                            Genre : JSON.stringify(response.data.Genre).slice(1, -1),
+                            Plot : JSON.stringify(response.data.Plot).slice(1, -1)
                         };
-
                         var array = {
                             youtubeId: youtubeId,
                             movieInfo: movieArray

@@ -8,7 +8,7 @@ snacksBtn.addEventListener('click', function (event) {
 
     axios.get('/showSnacks')
         .then(snacks => {
-        var snacksobj = JSON.stringify(snacks.data).replace(/\"/g, "");
+        var snacksobj = JSON.stringify(snacks.data).slice(1, -1);
         displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
 })
 });
@@ -26,7 +26,6 @@ movieBtn.addEventListener('click', function (event) {
     displayMovieElement.innerHTML = '';
     axios.get('/showMovie')
         .then(function (array) {
-
             displayMovieElement.innerHTML = generateMovieHTMLOutput(array.data.movieInfo, array.data.youtubeId);
         })
 });
@@ -42,11 +41,10 @@ function updateMovieInfo(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId;
     var trailer = document.getElementById('trailer');
     trailer.src = urlPath;
-    document.getElementById("movieTitle").innerHTML = movie.Title;
-    document.getElementById("movieYear").innerHTML = movie.Year;
-    document.getElementById("movieGenre").innerHTML = movie.Genre;
-    document.getElementById("moviePlot").innerHTML = movie.Plot;
-
+    document.getElementById("movieTitle").innerHTML = 'Titel: ' + movie.Title;
+    document.getElementById("movieYear").innerHTML = 'År: ' + movie.Year;
+    document.getElementById("movieGenre").innerHTML = 'Genre: ' + movie.Genre;
+    document.getElementById("moviePlot").innerHTML = 'Handling: ' + movie.Plot;
 }
 
 function generateMovieHTMLOutput(movie, youtubeId) {
