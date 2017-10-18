@@ -7,6 +7,8 @@ var youtube = require('./youtubeapi.js');
 
 var app = express();
 
+var filmapi = require('./filmapi.js');
+
 app.use(express.static('./public/client'));
 
 //routes
@@ -24,32 +26,10 @@ app.get('/showSnacks', function myFunction(req, res){
 });
 
 app.get('/showMovie', function (req, res) {
-    var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
-    var movieId = movieList[Math.floor(Math.random() * movieList.length)];
-    const url = 'http://omdbapi.com/?i=tt' + movieId + '&plot=short' + '&apikey=6397a4d9';
-
-    axios.get(url)
-        .then(function (response) {
-            getTrailer(response.data, function (youtubeId) {
-                // skapar en lista för att kunna skicka med 2 parametrar med res.send (res.send stödjer endast 1 return värde)
-                var array = {
-                    youtubeId: youtubeId,
-                    movieInfo: response.data
-                };
-                res.send(array)
-            });
-        });
+    filmapi.findMovie(function (data) {
+        res.send(data);
+    })
 });
-
-
-function getTrailer(movieData, callback) {
-    console.log('filmtitel: ' + movieData.Title + ' år den släpptes: ' + movieData.Year);
-    return youtube.search(movieData.Title, movieData.Year, function (data) {
-        var youtubeId = data.items[0].id.videoId;
-        callback(youtubeId);
-    });
-}
-
 
 app.listen(3000, function(){
     console.log("Listening on port 3000");
