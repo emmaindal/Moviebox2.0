@@ -35,11 +35,11 @@ movieBtn.addEventListener('click', function (event) {
 
 function generateMovieHTMLOutput(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId
-    return  '<h4> DIN FILM! </h4>' +
-        '<pre>' + JSON.stringify(movie.Title, null, '\t') + '</pre>' +
-        '<pre>' + JSON.stringify(movie.Year, null, '\t') + '</pre>' +
-        '<pre>' + JSON.stringify(movie.Genre, null, '\t') + '</pre>' +
+    return  '<h5> Rekommenderad film </h5>' +
+        '<pre>' + '<h6> Titel: ' + JSON.stringify(movie.Title, null, '\t') + '</h6>' + '</pre>' +
+        '<pre>' + '<h6> År: ' + JSON.stringify(movie.Year, null, '\t') + '</h6>' + '</pre>' +
+        '<pre>' + '<h6> Genre: ' + JSON.stringify(movie.Genre, null, '\t') + '</h6>' + '</pre>' +
         // istället för X_68miSOU78 ska en variabel från trailer.xxx.xxx in
         // har ej lyckats utvinna denna från youtubeapi.js
-        '<iframe width="560" height="315" src="'+urlPath+'" frameborder="0" allowfullscreen>' + '</iframe>';
+        '<iframe width="400" height="245" src="'+urlPath+'" frameborder="0" allowfullscreen>' + '</iframe>';
 }
