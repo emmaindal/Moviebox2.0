@@ -17,3 +17,16 @@ h6{
     color: black;
     font-size: 25px;
 }
+
+p{
+    text-align: center;
+    padding-bottom: 5%;
+    color: rgb(0, 18, 255);
+}
+
+#movieBtn{
+    width: 265px;
+    height: 265px;
+    box-shadow: 20px black;
+    font-size: 20px;
+}
