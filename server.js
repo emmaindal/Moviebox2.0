@@ -30,8 +30,6 @@ app.get('/showMovie', function (req, res) {
 
     axios.get(url)
         .then(function (response) {
-            // kör funktionen getTrailer, detta resulterar i respons med korrekt filminfo i konsoll
-            // har ej lyckats få ut datan från youtubeapi.js
             getTrailer(response.data, function (youtubeId) {
                 // skapar en lista för att kunna skicka med 2 parametrar med res.send (res.send stödjer endast 1 return värde)
                 var array = {

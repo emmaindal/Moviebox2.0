@@ -8,7 +8,7 @@ snacksBtn.addEventListener('click', function (event) {
     axios.get('/showSnacks')
         .then(snacks => {
         var snacksobj = JSON.stringify(snacks.data).replace(/\"/g, "");
-        displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
+    displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
 })
 });
 
@@ -27,15 +27,15 @@ movieBtn.addEventListener('click', function (event) {
     axios.get('/showMovie')
         .then(function (array) {
             // Tar bort citattecken fron JSON.stringify
+
             var movieArray = {
                 Title : JSON.stringify(array.data.movieInfo.Title).replace(/\"/g, ""),
                 Year : JSON.stringify(array.data.movieInfo.Year).replace(/\"/g, ""),
                 Genre : JSON.stringify(array.data.movieInfo.Genre).replace(/\"/g, ""),
                 Plot : JSON.stringify(array.data.movieInfo.Plot).replace(/\"/g, "")
             };
-
             displayMovieElement.innerHTML = generateMovieHTMLOutput(movieArray, array.data.youtubeId);
-    })
+        })
 });
 
 function generateMovieHTMLOutput(movie, youtubeId) {
