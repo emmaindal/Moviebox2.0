@@ -7,15 +7,15 @@ snacksBtn.addEventListener('click', function (event) {
 
     axios.get('/showSnacks')
         .then(snacks => {
-        var snacksobj = snacks;
+        var snacksobj = JSON.stringify(snacks.data).replace(/\"/g, "");
         displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
 })
 });
 
 function generateSnacksHTMLOutput(response) {
     return  '<h5> REKOMENDERAT SNACKS TILL FILMEN </h5>' +
-        '<pre>' + JSON.stringify(response.data, null, '\t') + '</pre>';
-;}
+        '<pre>' + response + '</pre>';
+}
 
 
 movieBtn.addEventListener('click', function (event) {
@@ -24,23 +24,26 @@ movieBtn.addEventListener('click', function (event) {
     $('.modal').modal();
     displayMovieElement.innerHTML = '';
 
-
     axios.get('/showMovie')
         .then(function (array) {
-            // skapar två olika varaibler från listan som returneras från server.js
-            // Genererar HTML baserat på tidigare värden
-            displayMovieElement.innerHTML = generateMovieHTMLOutput(array.data.movieInfo, array.data.youtubeId);
+            // Tar bort citattecken fron JSON.stringify
+            var movieArray = {
+                Title : JSON.stringify(array.data.movieInfo.Title).replace(/\"/g, ""),
+                Year : JSON.stringify(array.data.movieInfo.Year).replace(/\"/g, ""),
+                Genre : JSON.stringify(array.data.movieInfo.Genre).replace(/\"/g, ""),
+                Plot : JSON.stringify(array.data.movieInfo.Plot).replace(/\"/g, "")
+            };
+
+            displayMovieElement.innerHTML = generateMovieHTMLOutput(movieArray, array.data.youtubeId);
     })
 });
 
 function generateMovieHTMLOutput(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId;
     return  '<h5> Rekommenderad film </h5>' +
-        '<pre>' + '<h6> Titel: ' + JSON.stringify(movie.Title, null, '\t') + '</h6>' + '</pre>' +
-        '<pre>' + '<h6> År: ' + JSON.stringify(movie.Year, null, '\t') + '</h6>' + '</pre>' +
-        '<pre>' + '<h6> Genre: ' + JSON.stringify(movie.Genre, null, '\t') + '</h6>' + '</pre>' +
-        '<pre>' + '<h6> Genre: ' + JSON.stringify(movie.plot, null, '\t') + '</h6>' + '</pre>' +
-        // istället för X_68miSOU78 ska en variabel från trailer.xxx.xxx in
-        // har ej lyckats utvinna denna från youtubeapi.js
+        '<pre>' + '<h6> Titel: ' + movie.Title + '</h6>' + '</pre>' +
+        '<pre>' + '<h6> År: ' + movie.Year + '</h6>' + '</pre>' +
+        '<pre>' + '<h6> Genre: ' + movie.Genre + '</h6>' + '</pre>' +
+        '<pre>' + '<h6> Plot: ' + movie.Plot + '</h6>' + '</pre>' +
         '<iframe width="400" height="245" src="'+urlPath+'" frameborder="0" allowfullscreen>' + '</iframe>';
 }
