@@ -26,7 +26,7 @@ app.get('/showSnacks', function myFunction(req, res){
 app.get('/showMovie', function (req, res) {
     var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
     var movieId = movieList[Math.floor(Math.random() * movieList.length)];
-    const url = 'http://omdbapi.com/?i=tt' + movieId + '&apikey=6397a4d9';
+    const url = 'http://omdbapi.com/?i=tt' + movieId + '&plot=short' + '&apikey=6397a4d9';
 
     axios.get(url)
         .then(function (response) {
