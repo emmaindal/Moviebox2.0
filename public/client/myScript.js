@@ -1,5 +1,6 @@
 var snacksBtn = document.getElementById('snacksBtn');
 var movieBtn = document.getElementById('movieBtn');
+var newMovie = document.getElementById('newMovie');
 
 snacksBtn.addEventListener('click', function (event) {
     var displaySnacksElement = document.getElementById('getResult2');
@@ -23,29 +24,38 @@ movieBtn.addEventListener('click', function (event) {
     var displayMovieElement = document.getElementById('getResult1');
     $('.modal').modal();
     displayMovieElement.innerHTML = '';
-
     axios.get('/showMovie')
         .then(function (array) {
-            // Tar bort citattecken fron JSON.stringify
 
-            var movieArray = {
-                Title : JSON.stringify(array.data.movieInfo.Title).replace(/\"/g, ""),
-                Year : JSON.stringify(array.data.movieInfo.Year).replace(/\"/g, ""),
-                Genre : JSON.stringify(array.data.movieInfo.Genre).replace(/\"/g, ""),
-                Plot : JSON.stringify(array.data.movieInfo.Plot).replace(/\"/g, "")
-            };
-            displayMovieElement.innerHTML = generateMovieHTMLOutput(movieArray, array.data.youtubeId);
+            displayMovieElement.innerHTML = generateMovieHTMLOutput(array.data.movieInfo, array.data.youtubeId);
         })
 });
 
+newMovie.addEventListener('click', function (event) {
+    axios.get('/showMovie')
+        .then(function (array) {
+            updateMovieInfo(array.data.movieInfo, array.data.youtubeId)
+        })
+});
+
+function updateMovieInfo(movie, youtubeId) {
+    var urlPath = "https://www.youtube.com/embed/" + youtubeId;
+    var trailer = document.getElementById('trailer');
+    trailer.src = urlPath;
+    document.getElementById("movieTitle").innerHTML = movie.Title;
+    document.getElementById("movieYear").innerHTML = movie.Year;
+    document.getElementById("movieGenre").innerHTML = movie.Genre;
+    document.getElementById("moviePlot").innerHTML = movie.Plot;
+
+}
 
 function generateMovieHTMLOutput(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId;
     var trailer = document.getElementById('trailer');
-    trailer.src = urlPath
+    trailer.src = urlPath;
     return  '<h5> Rekommenderad film </h5>' +
-        '<h6> Titel: ' + movie.Title + '</h6>' +
-        '<h6> År: ' + movie.Year + '</h6>'+
-        '<h6> Genre: ' + movie.Genre + '</h6>' +
-        '<h6> Handling: ' + movie.Plot + '</h6>';
+        '<h6 id="movieTitle"> Titel: ' + movie.Title + '</h6>' +
+        '<h6 id="movieYear"> År: ' + movie.Year + '</h6>'+
+        '<h6 id="movieGenre"> Genre: ' + movie.Genre + '</h6>' +
+        '<h6 id="moviePlot"> Handling: ' + movie.Plot + '</h6>';
 }

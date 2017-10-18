@@ -25,6 +25,12 @@ app.get('/showMovie', function (req, res) {
     })
 });
 
+app.get('/newMovie', function (req, res) {
+    filmapi.findMovie(function (data) {
+        res.send(data);
+    })
+});
+
 app.listen(3000, function(){
     console.log("Listening on port 3000");
 });
