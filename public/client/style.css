@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(42, 153, 255);
+    background-color: rgb(134, 134, 134);
     color: rgb(0, 27, 143);
 }
 
@@ -7,10 +7,15 @@ body{
     text-align: center;
     padding-bottom: 20%;
 }
+h1{
+    color: rgb(204, 1, 11);
+}
 
 h4, h5{
     color: black;
     text-decoration: underline;
+    padding-bottom: 2%;
+
 }
 
 h6{
@@ -22,14 +27,19 @@ h6{
 
 p{
     text-align: center;
-    color: rgb(0, 18, 255);
+    color: rgb(162, 2, 10);
     padding-bottom: 5%;
 
 }
 
 #movieBtn{
+    background-color: rgb(204, 1, 11);
     width: 265px;
     height: 265px;
     box-shadow: 20px black;
     font-size: 20px;
+}
+
+#snacksBtn, #trailerBtn{
+    background-color: rgb(204, 1, 11);
 }

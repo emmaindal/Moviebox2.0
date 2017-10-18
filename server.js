@@ -10,10 +10,6 @@ var app = express();
 app.use(express.static('./public/client'));
 
 //routes
-app.get('/', function(req, res){
-    res.send("Hello World")
-});
-
 app.get('/showSnacks', function myFunction(req, res){
     var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
     var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
@@ -40,7 +36,6 @@ app.get('/showMovie', function (req, res) {
             });
         });
 });
-
 
 function getTrailer(movieData, callback) {
     console.log('filmtitel: ' + movieData.Title + ' år den släpptes: ' + movieData.Year);

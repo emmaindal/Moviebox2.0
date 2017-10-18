@@ -1,8 +1,4 @@
-//sida med kod : https://github.com/google/google-api-nodejs-client/blob/master/samples/youtube/search.js
-
 var google = require('googleapis');
-//var sampleClient = require('sampleclient');
-var util = require ('util');
 const API_KEY = 'AIzaSyAmQGWe8XGkU0-5j4sbGntxaTVitFHCVc0';
 
 var youtube = google.youtube({
@@ -27,5 +23,3 @@ exports.search = function(movieName, movieYear, callback) {
         }
     })
 };
-
-
