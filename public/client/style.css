@@ -40,6 +40,22 @@ p{
     font-size: 20px;
 }
 
-#snacksBtn, #trailerBtn{
+#snacksBtn, #trailerBtn, #newMovie{
+    background-color: rgb(204, 1, 11);
+}
+
+.collapsible{
+    border: 0px solid white !important;
+}
+
+.collapsible-header{
+    text-align: center;
+    color: white;
+    box-shadow: 0px;
+    border-bottom: 0px solid white !important;
+    background-color: none !important;
+}
+#collapsible-btn{
+    margin: 0 auto;
     background-color: rgb(204, 1, 11);
 }

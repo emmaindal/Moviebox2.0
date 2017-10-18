@@ -8,12 +8,12 @@ snacksBtn.addEventListener('click', function (event) {
     axios.get('/showSnacks')
         .then(snacks => {
         var snacksobj = JSON.stringify(snacks.data).replace(/\"/g, "");
-    displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
+        displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
 })
 });
 
 function generateSnacksHTMLOutput(response) {
-    return  '<h5> REKOMENDERAT SNACKS TILL FILMEN </h5>' +
+    return  '<h5> Rekommenderat filmsnacks: </h5>' +
         '<pre>' + response + '</pre>';
 }
 
@@ -38,12 +38,14 @@ movieBtn.addEventListener('click', function (event) {
         })
 });
 
+
 function generateMovieHTMLOutput(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId;
+    var trailer = document.getElementById('trailer');
+    trailer.src = urlPath
     return  '<h5> Rekommenderad film </h5>' +
         '<h6> Titel: ' + movie.Title + '</h6>' +
         '<h6> År: ' + movie.Year + '</h6>'+
         '<h6> Genre: ' + movie.Genre + '</h6>' +
-        '<h6> Handling: ' + movie.Plot + '</h6>'+
-        '<iframe width="550" height="365" src="'+urlPath+'" frameborder="0" allowfullscreen>' + '</iframe>';
+        '<h6> Handling: ' + movie.Plot + '</h6>';
 }

@@ -25,32 +25,44 @@
         <!-- Modal Structure -->
 
         <div id="modal1" class="modal modal-fixed-footer">
-            <div class="modal-content">
+            <div class="modal-content white">
+
                 <div id="getResult1">
 
                 </div>
+
                 <div id="getResult2">
 
                 </div>
+                <div>
+                    <ul class="collapsible z-depth-0" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><button id="collapsible-btn" type="button" name="button" class="waves-effect waves-light btn black">Visa Trailer</button></div>
+                            <div class="collapsible-body">
+                                <iframe  id="trailer" width="550" height="405" src="" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button id="snacksBtn" type="button" name="button" class="waves-effect waves-light btn">GE MIG SNACKSTIPS</button>
-                <button id="trailerBtn" type="button" name="button" class="waves-effect waves-light btn">SE TRAILER</button>
+                <div class="modal-footer">
+                    <button id="snacksBtn"  type="button" name="button" class="waves-effect waves-light btn orange">GE MIG SNACKSTIPS</button>
+                    <button id="newMovie"  type="button" name="button" class="waves-effect waves-light btn">NY FILM</button>
+                </div>
             </div>
+
+
+
+
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="myScript.js"></script>
 
 
+    </body>
 
-
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="myScript.js"></script>
-
-
-</body>
-
-</html>
+    </html>
