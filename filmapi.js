@@ -1,24 +1,50 @@
-console.log("Starting filmapi.js");
-const http = require('http');
+const axios = require('axios');
+var express = require('express');
 const fs = require('fs');
-const fetch = require('node-fetch');
-/*
-module.exports.getMovie = (callback, res) => {
-    //Fil med 9000imdb ID läses in. Görs till lista. Slumpar lista
-    var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
-    var movieId = movieList[Math.floor(Math.random()*movieList.length)];
+var youtube = require('./youtubeapi.js');
 
-    var hej = fetch('http://omdbapi.com/?i=tt'+ movieId + '&apikey=6397a4d9')
-        // Hämtar info från omdbapi
-        // när fetch är klart kör den funktionen som tar en variabel (response från fetch)
-        // och .json omvandlar den till till json
-        // SRC ::: http://blogs.missouristate.edu/cio/2016/01/14/fetching-data-over-http-with-nodejs-using-node-fetch/
-        .then(function(movieInfo){
-            return movieInfo.json();
+var app = express();
+
+
+
+app.use(express.static('./public/client'));
+
+var exports = module.exports = {};
+
+exports.findMovie = function (callback) {
+    function findMovie() {
+    var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
+    var movieId = movieList[Math.floor(Math.random() * movieList.length)];
+    const url = 'http://omdbapi.com/?i=tt' + movieId + '&plot=short' + '&apikey=6397a4d9';
+
+    axios.get(url)
+        .then(function (response) {
+            console.log(response.data.imdbRating);
+            if (response.data.imdbRating >= 6.5) {
+
+                getTrailer(response.data, function (youtubeId) {
+                    // skapar en lista för att kunna skicka med 2 parametrar med res.send (res.send stödjer endast 1 return värde)
+                    var array = {
+                        youtubeId: youtubeId,
+                        movieInfo: response.data
+                    };
+                    callback(array);
+                })
+            } else {
+                findMovie();
+            }
+
+
         })
-        .then(function(json){
-            console.log('Film: ' + json.Title + '\n' +
-                'Årtal: ' + json.Released + '\n' +
-                'Genres : ' + json.Genre);
-        });
-}*/
+}
+    findMovie()
+};
+
+
+function getTrailer(movieData, callback) {
+    console.log('filmtitel: ' + movieData.Title + ' år den släpptes: ' + movieData.Year);
+    return youtube.search(movieData.Title, movieData.Year, function (data) {
+        var youtubeId = data.items[0].id.videoId;
+        callback(youtubeId);
+    });
+}
