@@ -1,21 +1,20 @@
 console.log("Starting server.js");
 
 const axios = require('axios');
-var express = require('express');
+const express = require('express');
 var app = express();
 
 var filmapi = require('./filmapi.js');
+var matapi = require('./matapi.js');
+
 
 app.use(express.static('./public/client'));
 
 //routes
-app.get('/showSnacks', function myFunction(req, res){
-    var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
-    var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-    const url = 'http://matapi.se/foodstuff/' + randomId;
-
-    axios.get(url)
-        .then(response => {res.send(response.data.name)})
+app.get('/showSnacks', function (req, res) {
+    matapi.findSnacks(function (snacks) {
+        res.send(snacks);
+    })
 });
 
 app.get('/showMovie', function (req, res) {

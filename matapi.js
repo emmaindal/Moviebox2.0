@@ -1,45 +1,25 @@
-console.log("Starting matapi.js");
-
-const http = require('http');
+const axios = require('axios');
 var express = require('express');
-var request = require('request');
+
 var app = express();
 
-const fetch = require('node-fetch');
+app.use(express.static('./public/client'));
 
+var exports = module.exports = {};
 
-module.exports.getFood = (callback, res) => {
-    // diverse snacksID från matapis hemsida, bör kompletteras.
+exports.findSnacks = function (callback) {
+    function findSnacks() {
     var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
     var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
+    const url = 'http://matapi.se/foodstuff/' + randomId;
 
-    fetch('http://matapi.se/foodstuff/' + randomId)
-        .then(function(snack){
-            return snack.json();
+    axios.get(url)
+        .then(function (response) {
+            callback(response.data)
         })
-        .then(function(json){
-            console.log(json.name);
-        });
-
-    /*
-    return http.get({
-
-        host: 'matapi.se',
-        path: '/foodstuff/' + randomId
-    }, function(response) {
-        var body = '';
-        response.on('data', function(d){
-            body += d;
-        });
-        response.on('end', function() {
-            var dataResponse = JSON.parse(body);
-            //for(i = 0; i < dataResponse.length; i++){
-            console.log("Snacks: " + dataResponse.name);
-
-            console.log("-------------------------")
-            //}
-
-        });
-    });
-    */
 }
+    findSnacks();
+};
+
+
+console.log("Starting matapi.js");

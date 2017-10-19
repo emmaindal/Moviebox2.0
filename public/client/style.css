@@ -1,6 +1,8 @@
 body{
     background-color: rgb(134, 134, 134);
     color: rgb(0, 27, 143);
+    font-family: 'Quicksand', sans-serif;
+
 }
 
 .modal-content{
