@@ -8,10 +8,11 @@ var app = express();
 app.use(express.static('./public/client'));
 
 var exports = module.exports = {};
+var imdbIdFile = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
 
 exports.findMovie = function (callback) {
     function findMovie() {
-        var movieList = fs.readFileSync('imdb_id.txt', 'UTF-8').toString().split("\r");
+        var movieList = imdbIdFile;
         var movieId = movieList[Math.floor(Math.random() * movieList.length)];
         const url = 'http://omdbapi.com/?i=tt' + movieId + '&plot=short' + '&apikey=6397a4d9';
 

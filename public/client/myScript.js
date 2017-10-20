@@ -7,8 +7,8 @@ snacksBtn.addEventListener('click', function (event) {
 
     axios.get('/showSnacks')
         .then(function (snacks){
-            var snacksobj = JSON.stringify(snacks.data.name).replace(/\"/g, "");
-            console.log(snacksobj)
+            var snacksobj = JSON.stringify(snacks.data.name).split(1, -1);
+            console.log(snacksobj);
             displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
     })
 });
