@@ -19,6 +19,7 @@
   "homepage": "https://github.com/emmaindal/Moviebox2.0#readme",
   "dependencies": {
     "axios": "^0.16.2",
+    "express": "^4.16.2",
     "googleapis": "^22.2.0",
     "materialize-css": "^0.100.2",
     "node-fetch": "^1.7.3",
