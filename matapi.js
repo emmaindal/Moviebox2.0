@@ -11,7 +11,7 @@ exports.findSnacks = function (callback) {
     function findSnacks() {
     var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
     var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-    const url = 'http://matapi.se/foodstuff/' + randomId;
+    const url = 'http://matapi.se/foodstuff/';
 
     axios.get(url)
         .then(function (response) {
