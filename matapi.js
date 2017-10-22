@@ -9,18 +9,27 @@ var exports = module.exports = {};
 
 exports.findSnacks = function (callback) {
     function findSnacks() {
-    var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
-    var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-    const url = 'http://matapi.se/foodstuff/' + randomId;
+        // var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
+        // var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
+        const url = 'http://matapi.se/foodstuff';
 
-    axios.get(url)
-        .then(function (response) {
-            console.log(response.data.name);
-            callback(response.data.name)
-        })
-}
+        axios.get(url)
+            .then(function (response) {
+                callback(response.data.name)
+            })
+    }
     findSnacks();
 };
 
+
+exports.findSpecificSnack = function (snackid, callback) {
+    const url = 'http://matapi.se/foodstuff/' + snackid;
+
+    axios.get(url)
+        .then(function (fullInfoFromSpecificSnack) {
+            console.log(' matapi: ' + fullInfoFromSpecificSnack.data.name);
+            callback(fullInfoFromSpecificSnack.data.name);
+        });
+}
 
 console.log("Starting matapi.js");

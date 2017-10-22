@@ -28,6 +28,15 @@ app.get('/newMovie', function (req, res) {
     })
 });
 
+app.get('/showSnacks/:snack', function (req, res) {
+    // sparar ID från URL
+    var snackid = req.params.snack;
+    // generar och returnerar specific snack beroende på ID
+    matapi.findSpecificSnack(snackid, function (snack) {
+        res.send(snack)
+    })
+});
+
 app.listen(3000, function(){
     console.log("Listening on port 3000");
 });

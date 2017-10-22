@@ -1,7 +1,7 @@
 var movieBtn = document.getElementById('movieBtn');
 var newMovie = document.getElementById('newMovie');
 
-function getSnacksInformation(callback){
+function getFullSnackInformation(callback){
     axios.get('/showSnacks')
         .then(function (snacks){
             var snacksobj = JSON.stringify(snacks.data).slice(1,-1);
@@ -12,63 +12,91 @@ function getSnacksInformation(callback){
 function getMovieInformation(callback){
     axios.get('/showMovie')
         .then(function (array) {
-            updateMovieHTML(array.data.movieInfo, array.data.youtubeId);
-            callback(array.data.movieInfo.Genre)
+            callback(array)
+        })
+}
+
+function getSpecificSnack(snackId, callback) {
+    axios.get('/showSnacks/' + snackId)
+        .then(function (specificSnack){
+            callback(specificSnack)
         })
 }
 
 
 function generateSnacksHTML(response) {
-    console.log('här är random snacks:' + compareGenreToSnackId('Action'));
     return  '<h5> Rekommenderat filmsnacks: </h5>' +
-    '<h6>' + response + '</h6>';
+        '<h6>' + response + '</h6>';
 }
 
-function compareGenreToSnackId(genre){
+newSnack.addEventListener('click', function (event) {
+    get
+})
+
+newMovie.addEventListener('click', function (event) {
+    // Axios request from snack and Movie
+    getMovieInformation(function(array){
+        // Updates the Movie Information
+        updateMovieHTML(array.data.movieInfo, array.data.youtubeId);
+
+        // Get a random snackID depending on Genre
+        var snackId = compareGenreToSnackId(array.data.movieInfo.Genre);
+        getSpecificSnack(snackId, function (specificSnack) {
+            // displays the snack
+            var displaySnacksElement = document.getElementById('snacksElement');
+            snack = JSON.stringify(specificSnack.data).slice(1, -1);
+            displaySnacksElement.innerHTML = generateSnacksHTML(snack);
+        })
+
+    })
+});
+
+function generateRandomId(snacksIdList) {
+    // Selects one random snack for each movie
+    return snacksIdList[Math.floor(Math.random()*snacksIdList.length)];
+}
+function randomGenreFromMovie(genre) {
+    // takes one random Genre from the movie
+    genreList = genre.split(" ");
+    return genreList[Math.floor(Math.random()*genreList.length)];
+}
+
+function compareGenreToSnackId(movieGenres){
+    var genre = randomGenreFromMovie(movieGenres);
+
     if (genre === 'Action'){
-        var snacksId = ['1581', '1580', '1583', '1584', '1585', '1848'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        var snacksIdList = ['1581', '1580', '1583', '1584', '1585', '1848'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Drama'){
-        snacksId = ['1579', '1583', '1848'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1579', '1583', '1848'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Comedy'){
-        snacksId = ['1581', '1582', '1583', '1584', '1848', '1849'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1581', '1582', '1583', '1584', '1848', '1849'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Thriller'){
-        snacksId = [ '1583', '1853', '1852'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = [ '1583', '1853', '1852'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Romance'){
-        snacksId = ['1583', '526', '2052', '2246', '1858'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1583', '526', '2052', '2246', '1858'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Sci-Fi'){
-        snacksId = ['1580', '1582', '1583', '1875'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1580', '1582', '1583', '1875'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Crime'){
-        snacksId = ['1582', '1583', '1585'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1582', '1583', '1585'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Adventure'){
-        snacksId = ['1580', '1583', '1584', '1848'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1580', '1583', '1584', '1848'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Sport'){
-        snacksId = ['1581', '1583', '1584', '1585'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1581', '1583', '1584', '1585'];
+        return generateRandomId(snacksIdList)
     } else if (genre === 'Documentary'){
-        snacksId = ['1579', '1583', '1585', '1875'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1579', '1583', '1585', '1875'];
+        return generateRandomId(snacksIdList)
     } else {
-        snacksId = ['1583', '1584', '1585', '1875', '2246'];
-        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
-        return randomId
+        snacksIdList = ['1583', '1584', '1585', '1875', '2246'];
+        return generateRandomId(snacksIdList)
     }
 }
 
@@ -88,24 +116,11 @@ function generateMovieHTML(movie, youtubeId) {
     var trailer = document.getElementById('trailer');
     trailer.src = urlPath;
     return  '<h5> Rekommenderad film </h5>' +
-    '<h6 id="movieTitle"> Titel: ' + movie.Title + '</h6>' +
-    '<h6 id="movieYear"> År: ' + movie.Year + '</h6>'+
-    '<h6 id="movieGenre"> Genre: ' + movie.Genre + '</h6>' +
-    '<h6 id="moviePlot"> Handling: ' + movie.Plot + '</h6>';
+        '<h6 id="movieTitle"> Titel: ' + movie.Title + '</h6>' +
+        '<h6 id="movieYear"> År: ' + movie.Year + '</h6>'+
+        '<h6 id="movieGenre"> Genre: ' + movie.Genre + '</h6>' +
+        '<h6 id="moviePlot"> Handling: ' + movie.Plot + '</h6>';
 }
-
-
-newMovie.addEventListener('click', function (event) {
-    var displaySnacksElement = document.getElementById('getResult2');
-
-    getSnacksInformation(function(snacksobj){
-        getMovieInformation(function(array){
-            displaySnacksElement.innerHTML = generateSnacksHTML(snacksobj);
-            console.log(array);
-            console.log(snacksobj);
-        })
-    })
-});
 
 
 movieBtn.addEventListener('click', function (event) {
