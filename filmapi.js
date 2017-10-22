@@ -44,7 +44,7 @@ exports.findMovie = function (callback) {
 };
 
 function getTrailer(movieData, callback) {
-    console.log('filmtitel: ' + movieData.Title + ' år den släpptes: ' + movieData.Year);
+    console.log('filmtitel: ' + movieData.Title + '....år den släpptes: ' + movieData.Year);
     return youtube.search(movieData.Title, movieData.Year, function (data) {
         var youtubeId = data.items[0].id.videoId;
         callback(youtubeId);

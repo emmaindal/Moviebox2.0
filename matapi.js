@@ -15,7 +15,7 @@ exports.findSnacks = function (callback) {
 
     axios.get(url)
         .then(function (response) {
-            console.log(response.data.name)
+            console.log(response.data.name);
             callback(response.data.name)
         })
 }

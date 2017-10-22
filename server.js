@@ -1,8 +1,7 @@
 console.log("Starting server.js");
 
-const axios = require('axios');
 const express = require('express');
-var app = express();
+const app = express();
 
 var filmapi = require('./filmapi.js');
 var matapi = require('./matapi.js');
