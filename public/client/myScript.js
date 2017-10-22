@@ -1,6 +1,10 @@
 var movieBtn = document.getElementById('movieBtn');
 var newMovie = document.getElementById('newMovie');
 
+
+//
+// AXIOS.GET functions
+//
 function getFullSnackInformation(callback){
     axios.get('/showSnacks')
         .then(function (snacks){
@@ -23,33 +27,58 @@ function getSpecificSnack(snackId, callback) {
         })
 }
 
+//
+// Button click listeners
+//
+movieBtn.addEventListener('click', function (event) {
+    // SRC generate html :::: https://medium.com/codingthesmartway-com-blog/getting-started-with-axios-166cb0035237
+    var displayMovieElement = document.getElementById('movieElement');
+    displayMovieElement.innerHTML = '';
 
-function generateSnacksHTML(response) {
-    return  '<h5> Rekommenderat filmsnacks: </h5>' +
-        '<h6>' + response + '</h6>';
-}
-
-newSnack.addEventListener('click', function (event) {
-    get
-})
+    $('.modal').modal();
+    getMovieInformation(function (array) {
+        clickNewSnack(array.data.movieInfo.Genre);
+        displayMovieElement.innerHTML = generateMovieHTML(array.data.movieInfo, array.data.youtubeId);
+    })
+});
 
 newMovie.addEventListener('click', function (event) {
     // Axios request from snack and Movie
     getMovieInformation(function(array){
         // Updates the Movie Information
         updateMovieHTML(array.data.movieInfo, array.data.youtubeId);
-
-        // Get a random snackID depending on Genre
-        var snackId = compareGenreToSnackId(array.data.movieInfo.Genre);
-        getSpecificSnack(snackId, function (specificSnack) {
-            // displays the snack
-            var displaySnacksElement = document.getElementById('snacksElement');
-            snack = JSON.stringify(specificSnack.data).slice(1, -1);
-            displaySnacksElement.innerHTML = generateSnacksHTML(snack);
-        })
-
+        // Clears the snack HTML
+        var displaySnacksElement = document.getElementById('snacksElement');
+        displaySnacksElement.innerHTML = "";
+        // Listens for "give me snack" button
+        clickNewSnack(array.data.movieInfo.Genre);
     })
 });
+
+
+//
+// Snack depending on genre functions
+//
+function clickNewSnack(movieGenre) {
+    // Generates a new snack
+    //listens for click
+    newSnack.addEventListener('click', function (event) {
+        randomSnackFromGenre(movieGenre);
+    });
+}
+
+function randomSnackFromGenre(genreList){
+    // Get a random snackID depending on Genre
+    var snackId = selectSnackIdFromGenre(genreList);
+
+    getSpecificSnack(snackId, function (specificSnack) {
+        // displays the snack
+
+        var snack = JSON.stringify(specificSnack.data).slice(1, -1);
+        var displaySnacksElement = document.getElementById('snacksElement');
+        displaySnacksElement.innerHTML = generateSnacksHTML(snack);
+    })
+}
 
 function generateRandomId(snacksIdList) {
     // Selects one random snack for each movie
@@ -57,13 +86,13 @@ function generateRandomId(snacksIdList) {
 }
 function randomGenreFromMovie(genre) {
     // takes one random Genre from the movie
-    genreList = genre.split(" ");
+    var genreList = genre.split(" ");
     return genreList[Math.floor(Math.random()*genreList.length)];
 }
 
-function compareGenreToSnackId(movieGenres){
+function selectSnackIdFromGenre(movieGenres){
     var genre = randomGenreFromMovie(movieGenres);
-
+    // Different snacks depending on genre
     if (genre === 'Action'){
         var snacksIdList = ['1581', '1580', '1583', '1584', '1585', '1848'];
         return generateRandomId(snacksIdList)
@@ -101,16 +130,10 @@ function compareGenreToSnackId(movieGenres){
 }
 
 
-function updateMovieHTML(movie, youtubeId) {
-    var trailer = document.getElementById('trailer');
-    trailer.src = "https://www.youtube.com/embed/" + youtubeId;
 
-    document.getElementById("movieTitle").innerHTML = 'Titel: ' + movie.Title;
-    document.getElementById("movieYear").innerHTML = 'År: ' + movie.Year;
-    document.getElementById("movieGenre").innerHTML = 'Genre: ' + movie.Genre;
-    document.getElementById("moviePlot").innerHTML = 'Handling: ' + movie.Plot;
-}
-
+//
+// HTML Generating functions
+//
 function generateMovieHTML(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId;
     var trailer = document.getElementById('trailer');
@@ -122,18 +145,19 @@ function generateMovieHTML(movie, youtubeId) {
         '<h6 id="moviePlot"> Handling: ' + movie.Plot + '</h6>';
 }
 
+function generateSnacksHTML(response) {
+    return  '<h5> Rekommenderat filmsnacks: </h5>' +
+        '<h6>' + response + '</h6>';
+}
 
-movieBtn.addEventListener('click', function (event) {
-    // SRC generate html :::: https://medium.com/codingthesmartway-com-blog/getting-started-with-axios-166cb0035237
-    var displayMovieElement = document.getElementById('movieElement');
-    var displaySnacksElement = document.getElementById('snacksElement');
-    displaySnacksElement.innerHTML = '';
-    displayMovieElement.innerHTML = '';
+function updateMovieHTML(movie, youtubeId) {
+    var trailer = document.getElementById('trailer');
+    trailer.src = "https://www.youtube.com/embed/" + youtubeId;
 
-    $('.modal').modal();
-    axios.get('/showMovie')
-        .then(function (array) {
-            displayMovieElement.innerHTML = generateMovieHTML(array.data.movieInfo, array.data.youtubeId);
-        })
-});
+    document.getElementById("movieTitle").innerHTML = 'Titel: ' + movie.Title;
+    document.getElementById("movieYear").innerHTML = 'År: ' + movie.Year;
+    document.getElementById("movieGenre").innerHTML = 'Genre: ' + movie.Genre;
+    document.getElementById("moviePlot").innerHTML = 'Handling: ' + movie.Plot;
+}
+
 

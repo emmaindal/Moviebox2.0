@@ -24,10 +24,8 @@ exports.findSnacks = function (callback) {
 
 exports.findSpecificSnack = function (snackid, callback) {
     const url = 'http://matapi.se/foodstuff/' + snackid;
-
     axios.get(url)
         .then(function (fullInfoFromSpecificSnack) {
-            console.log(' matapi: ' + fullInfoFromSpecificSnack.data.name);
             callback(fullInfoFromSpecificSnack.data.name);
         });
 }
