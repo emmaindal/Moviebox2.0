@@ -7,7 +7,7 @@ newMovie.addEventListener('click', function (event) {
     function snacks(callback){
         axios.get('/showSnacks')
         .then(function (snacks){
-            var snacksobj = JSON.stringify(snacks.data[1].name).slice(1,-1);
+            var snacksobj = JSON.stringify(snacks.data).slice(1,-1);
             displaySnacksElement.innerHTML = generateSnacksHTMLOutput(snacksobj)
             callback(snacksobj);
         })
@@ -35,7 +35,41 @@ function generateSnacksHTMLOutput(response) {
 }
 
 function generateRandomSnacks(genre, snacks){
-
+    var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
+    if (genre === 'Action'){
+            var snacksId = ['1581', '1580', '1583', '1584', '1585', '1848'];
+            return randomId
+    } else if (genre === 'Drama'){
+        var snacksId = ['1579', '1583', '1848'];
+        return randomId
+    } else if (genre === 'Comedy'){
+        var snacksId = ['1581', '1582', '1583', '1584', '1848', '1849'];
+        return randomId
+    } else if (genre === 'Thriller'){
+        var snacksId = [ '1583', '1853', '1852'];
+        return randomId
+    } else if (genre === 'Romance'){
+        var snacksId = ['1583', '526', '2052', '2246', '1858'];
+        return randomId
+    } else if (genre === 'Sci-Fi'){
+        var snacksId = ['1580', '1582', '1583', '1875'];
+        return randomId
+    } else if (genre === 'Crime'){
+        var snacksId = ['1582', '1583', '1585'];
+        return randomId
+    } else if (genre === 'Adventure'){
+        var snacksId = ['1580', '1583', '1584', '1848'];
+        return randomId
+    } else if (genre === 'Sport'){
+        var snacksId = ['1581', '1583', '1584', '1585'];
+        return randomId
+    } else if (genre === 'Documentary'){
+        var snacksId = ['1579', '1583', '1585', '1875'];
+        return randomId
+    } else {
+        var snacksId = ['1583', '1584', '1585', '1875', '2246'];
+        return randomId
+    }
 }
 
 movieBtn.addEventListener('click', function (event) {
