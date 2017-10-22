@@ -3,6 +3,7 @@ var newMovie = document.getElementById('newMovie');
 
 newMovie.addEventListener('click', function (event) {
     var displaySnacksElement = document.getElementById('getResult2');
+    
 
     function snacks(callback){
         axios.get('/showSnacks')
@@ -30,47 +31,59 @@ newMovie.addEventListener('click', function (event) {
 });
 
 function generateSnacksHTMLOutput(response) {
+    console.log('här är random snacks:' + generateRandomSnacks('Action'));
     return  '<h5> Rekommenderat filmsnacks: </h5>' +
     '<h6>' + response + '</h6>';
 }
 
-function generateRandomSnacks(genre, snacks){
-    var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
+function generateRandomSnacks(genre){
     if (genre === 'Action'){
-            var snacksId = ['1581', '1580', '1583', '1584', '1585', '1848'];
-            return randomId
+        var snacksId = ['1581', '1580', '1583', '1584', '1585', '1848'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
+        return randomId
     } else if (genre === 'Drama'){
-        var snacksId = ['1579', '1583', '1848'];
+        snacksId = ['1579', '1583', '1848'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Comedy'){
-        var snacksId = ['1581', '1582', '1583', '1584', '1848', '1849'];
+        snacksId = ['1581', '1582', '1583', '1584', '1848', '1849'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Thriller'){
-        var snacksId = [ '1583', '1853', '1852'];
+        snacksId = [ '1583', '1853', '1852'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Romance'){
-        var snacksId = ['1583', '526', '2052', '2246', '1858'];
+        snacksId = ['1583', '526', '2052', '2246', '1858'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Sci-Fi'){
-        var snacksId = ['1580', '1582', '1583', '1875'];
+        snacksId = ['1580', '1582', '1583', '1875'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Crime'){
-        var snacksId = ['1582', '1583', '1585'];
+        snacksId = ['1582', '1583', '1585'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Adventure'){
-        var snacksId = ['1580', '1583', '1584', '1848'];
+        snacksId = ['1580', '1583', '1584', '1848'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Sport'){
-        var snacksId = ['1581', '1583', '1584', '1585'];
+        snacksId = ['1581', '1583', '1584', '1585'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else if (genre === 'Documentary'){
-        var snacksId = ['1579', '1583', '1585', '1875'];
+        snacksId = ['1579', '1583', '1585', '1875'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     } else {
-        var snacksId = ['1583', '1584', '1585', '1875', '2246'];
+        snacksId = ['1583', '1584', '1585', '1875', '2246'];
+        var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         return randomId
     }
 }
+
 
 movieBtn.addEventListener('click', function (event) {
     // SRC generate html :::: https://medium.com/codingthesmartway-com-blog/getting-started-with-axios-166cb0035237
