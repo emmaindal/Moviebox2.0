@@ -88,4 +88,9 @@ p{
     .info-box{
         width: 80%;
     }
+    .modal.modal-footer.btn {
+        width: 40%;
+        font-size: 14px;
+        padding: 0;
+    }
 }
