@@ -47,7 +47,6 @@ function getSpecificSnack(snackId, callback) {
 // Button click listeners
 //
 movieBtn.addEventListener('click', function (event) {
-    // SRC generate html :::: https://medium.com/codingthesmartway-com-blog/getting-started-with-axios-166cb0035237
     var displayMovieElement = document.getElementById('movieElement');
     displayMovieElement.innerHTML = '';
 
@@ -63,7 +62,7 @@ newMovie.addEventListener('click', function (event) {
     getMovieInformation(function(array){
         // Updates the Movie Information
         updateMovieHTML(array.data.movieInfo, array.data.youtubeId);
-        // Clears the snack HTML
+        // Clears the snack HTML when getting new movie
         var displaySnacksElement = document.getElementById('snacksElement');
         displaySnacksElement.innerHTML = "";
         // Listens for "give me snack" button
@@ -89,7 +88,6 @@ function randomSnackFromGenre(genreList){
 
     getSpecificSnack(snackId, function (specificSnack) {
         // displays the snack
-
         var snack = JSON.stringify(specificSnack.data).slice(1, -1);
         var displaySnacksElement = document.getElementById('snacksElement');
         displaySnacksElement.innerHTML = generateSnacksHTML(snack);
@@ -101,16 +99,15 @@ function generateRandomId(id) {
     return id[Math.floor(Math.random()*id.length)];
 }
 function randomGenreFromMovie(genre) {
-    // takes one random Genre from the movie
+    // Selects one random genre from the total movie genres
     var genreList = genre.split(" ");
     var randomGenre = genreList[Math.floor(Math.random()*genreList.length)];
+    // Genre might contain "," if its in the middle of the list. The If solves this
     if (randomGenre.includes(",") === true) {
         return randomGenre.slice(0, -1);
-
     }
     return randomGenre
 }
-
 
 function selectSnackIdFromGenre(movieGenres){
     var genre = randomGenreFromMovie(movieGenres);
@@ -147,7 +144,6 @@ function selectSnackIdFromGenre(movieGenres){
         return generateRandomId(snacksIdList)
     } else {
         snacksIdList = ['1583', '1584', '1585', '1875', '2246'];
-        console.log('else');
         return generateRandomId(snacksIdList)
     }
 }
@@ -182,5 +178,4 @@ function updateMovieHTML(movie, youtubeId) {
     document.getElementById("movieGenre").innerHTML = 'Genre: ' + movie.Genre;
     document.getElementById("moviePlot").innerHTML = 'Handling: ' + movie.Plot;
 }
-
 

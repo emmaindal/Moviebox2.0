@@ -23,3 +23,5 @@ exports.search = function(movieName, movieYear, callback) {
         }
     })
 };
+
+console.log('Starting youtubeapi.js');

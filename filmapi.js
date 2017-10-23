@@ -47,6 +47,7 @@ exports.findMovie = function (callback) {
                     console.log(error.response.data);
                     console.log(error.response.status);
                     console.log(error.response.headers);
+                    findMovie();
                 } else if (error.request) {
                     // The request was made but no response was received
                     console.log(error.request);
@@ -58,9 +59,10 @@ exports.findMovie = function (callback) {
 };
 
 function getTrailer(movieData, callback) {
-    console.log('filmtitel: ' + movieData.Title + '....år den släpptes: ' + movieData.Year);
     return youtube.search(movieData.Title, movieData.Year, function (data) {
         var youtubeId = data.items[0].id.videoId;
         callback(youtubeId);
     });
 }
+
+console.log('Starting filmapi.js');
