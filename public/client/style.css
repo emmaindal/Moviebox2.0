@@ -6,6 +6,7 @@ body{
 }
 
 .container{
+    margin: 0 auto !important;
     width: 100% !important;
 }
 
@@ -25,6 +26,7 @@ body{
 
 nav{
     background-color: rgb(134, 134, 134) !important;
+    margin: 0 auto !important;
 }
 
 .brand-logo{
