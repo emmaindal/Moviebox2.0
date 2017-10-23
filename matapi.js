@@ -1,5 +1,5 @@
 const axios = require('axios');
-var express = require('express');
+const express = require('express');
 
 var app = express();
 
@@ -10,9 +10,8 @@ var exports = module.exports = {};
 
 
 exports.findSnacks = function (callback) {
+    // Displays all available snacks from matapi
     function findSnacks() {
-        // var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
-        // var randomId = snacksId[Math.floor(Math.random()*snacksId.length)];
         const url = 'http://matapi.se/foodstuff';
         axios.get(url)
             .then(function (response) {
@@ -35,6 +34,7 @@ exports.findSnacks = function (callback) {
 };
 
 exports.findSpecificSnack = function (snackid, callback) {
+    // Get specific snack depending on snackid
     const url = 'http://matapi.se/foodstuff/' + snackid;
     axios.get(url)
         .then(function (fullInfoFromSpecificSnack) {

@@ -7,23 +7,20 @@ const path = require("path");
 var filmapi = require('./filmapi.js');
 var matapi = require('./matapi.js');
 
-
 app.use(express.static('./public/client'));
 
-//routes
+//
+// Routes for API.
+//
 app.get('/showSnacks', function (req, res) {
+    // shows all available snacks
     matapi.findSnacks(function (snacks) {
         res.send(snacks);
     })
 });
 
 app.get('/showMovie', function (req, res) {
-    filmapi.findMovie(function (data) {
-        res.send(data);
-    })
-});
-
-app.get('/newMovie', function (req, res) {
+    // generates and displays one movie
     filmapi.findMovie(function (data) {
         res.send(data);
     })
@@ -43,6 +40,7 @@ app.get('/showSnacks/:snack', function (req, res) {
         res.send(snack)
     })
 });
+
 
 app.get('/',function(req,res){
     res.sendFile(path.join(__dirname+'/public/client/views/index.html'));
