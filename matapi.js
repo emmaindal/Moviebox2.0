@@ -7,6 +7,8 @@ app.use(express.static('./public/client'));
 
 var exports = module.exports = {};
 
+
+
 exports.findSnacks = function (callback) {
     function findSnacks() {
         // var snacksId = ['1581', '1580', '1579', '1582', '1583', '1584', '1585' ];
@@ -15,7 +17,7 @@ exports.findSnacks = function (callback) {
 
         axios.get(url)
             .then(function (response) {
-                callback(response.data.name)
+                callback(response.data)
             })
     }
     findSnacks();

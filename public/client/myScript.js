@@ -103,7 +103,6 @@ function selectSnackIdFromGenre(movieGenres){
         var snacksIdList = ['1581', '1580', '1583', '1584', '1585', '1848'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Drama'){
-        console.log('drama');
         snacksIdList = ['1579', '1583', '1848'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Comedy'){

@@ -10,12 +10,6 @@ var matapi = require('./matapi.js');
 app.use(express.static('./public/client'));
 
 //routes
-app.get('/showSnacks', function (req, res) {
-    matapi.findSnacks(function (snacks) {
-        res.send(snacks);
-    })
-});
-
 app.get('/showMovie', function (req, res) {
     filmapi.findMovie(function (data) {
         res.send(data);
@@ -24,6 +18,12 @@ app.get('/showMovie', function (req, res) {
 
 app.get('/newMovie', function (req, res) {
     filmapi.findMovie(function (data) {
+        res.send(data);
+    })
+});
+
+app.get('/showSnacks', function (req, res) {
+    matapi.findSnacks(function (data){
         res.send(data);
     })
 });
