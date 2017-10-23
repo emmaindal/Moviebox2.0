@@ -1,6 +1,6 @@
 var movieBtn = document.getElementById('movieBtn');
 var newMovie = document.getElementById('newMovie');
-
+$(".button-collapse").sideNav();
 
 //
 // AXIOS.GET functions
