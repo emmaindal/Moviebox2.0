@@ -2,12 +2,16 @@ body{
     background-color: rgb(134, 134, 134);
     color: rgb(0, 27, 143);
     font-family: 'Quicksand', sans-serif;
-
 }
 
 .container{
     margin: 0 auto !important;
     width: 100% !important;
+}
+
+nav{
+    background-color: rgb(134, 134, 134) !important;
+    margin: 0 auto !important;
 }
 
 .info-box{
@@ -22,11 +26,6 @@ body{
 .modal-content{
     text-align: center;
     padding-bottom: 20%;
-}
-
-nav{
-    background-color: rgb(134, 134, 134) !important;
-    margin: 0 auto !important;
 }
 
 .brand-logo{
@@ -47,7 +46,6 @@ h4, h5{
     color: black;
     text-decoration: underline;
     padding-bottom: 2%;
-
 }
 
 h6{
@@ -63,6 +61,7 @@ p{
     padding-bottom: 2%;
 
 }
+
 .error404-box{
     width: 60%;
     margin:0 auto !important;
@@ -80,26 +79,9 @@ p{
     font-size: 20px;
 }
 
-#snacksBtn, #trailerBtn, #newMovie{
+#snacksBtn, #newMovie{
     background-color: rgb(204, 1, 11);
 }
-
-.collapsible{
-    border: 0px solid white !important;
-}
-
-.collapsible-header{
-    text-align: center;
-    color: white;
-    box-shadow: 0px;
-    border-bottom: 0px solid white !important;
-    background-color: none !important;
-}
-#collapsible-btn{
-    margin: 0 auto;
-    background-color: rgb(204, 1, 11);
-}
-
 
 @media only screen and (max-width: 980px){
     .info-box{
