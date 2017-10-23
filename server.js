@@ -11,15 +11,12 @@ var matapi = require('./matapi.js');
 app.use(express.static('./public/client'));
 
 //routes
-<<<<<<< HEAD
-=======
 app.get('/showSnacks', function (req, res) {
     matapi.findSnacks(function (snacks) {
         res.send("snacks");
     })
 });
 
->>>>>>> front_end
 app.get('/showMovie', function (req, res) {
     filmapi.findMovie(function (data) {
         res.send(data);
