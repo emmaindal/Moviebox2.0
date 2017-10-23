@@ -80,15 +80,21 @@ function randomSnackFromGenre(genreList){
     })
 }
 
-function generateRandomId(snacksIdList) {
+function generateRandomId(id) {
     // Selects one random snack for each movie
-    return snacksIdList[Math.floor(Math.random()*snacksIdList.length)];
+    return id[Math.floor(Math.random()*id.length)];
 }
 function randomGenreFromMovie(genre) {
     // takes one random Genre from the movie
     var genreList = genre.split(" ");
-    return genreList[Math.floor(Math.random()*genreList.length)];
+    var randomGenre = genreList[Math.floor(Math.random()*genreList.length)];
+    if (randomGenre.includes(",") === true) {
+        return randomGenre.slice(0, -1);
+
+    }
+    return randomGenre
 }
+
 
 function selectSnackIdFromGenre(movieGenres){
     var genre = randomGenreFromMovie(movieGenres);
@@ -97,6 +103,7 @@ function selectSnackIdFromGenre(movieGenres){
         var snacksIdList = ['1581', '1580', '1583', '1584', '1585', '1848'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Drama'){
+        console.log('drama');
         snacksIdList = ['1579', '1583', '1848'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Comedy'){
@@ -125,6 +132,7 @@ function selectSnackIdFromGenre(movieGenres){
         return generateRandomId(snacksIdList)
     } else {
         snacksIdList = ['1583', '1584', '1585', '1875', '2246'];
+        console.log('else');
         return generateRandomId(snacksIdList)
     }
 }
