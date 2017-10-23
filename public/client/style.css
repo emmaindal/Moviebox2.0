@@ -5,10 +5,23 @@ body{
 
 }
 
+.container{
+    width: 100% !important;
+}
+
 .modal-content{
     text-align: center;
     padding-bottom: 20%;
 }
+
+nav{
+    background-color: rgb(134, 134, 134) !important;
+}
+
+.brand-logo{
+    left: 2%;
+}
+
 h1{
     color: rgb(204, 1, 11);
 }
