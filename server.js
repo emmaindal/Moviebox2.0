@@ -60,6 +60,11 @@ app.get('/contact',function(req,res){
     res.sendFile(path.join(__dirname+'/public/client/views/contact.html'));
 });
 
+app.get('/*',function(req,res){
+    res.sendFile(path.join(__dirname+'/public/client/views/error404.html'));
+});
+
+
 app.listen(3000, function(){
     console.log("Listening on port 3000");
 });
