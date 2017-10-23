@@ -13,7 +13,7 @@ app.use(express.static('./public/client'));
 //routes
 app.get('/showSnacks', function (req, res) {
     matapi.findSnacks(function (snacks) {
-        res.send("snacks");
+        res.send(snacks);
     })
 });
 

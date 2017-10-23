@@ -5,19 +5,23 @@ var newMovie = document.getElementById('newMovie');
 //
 // AXIOS.GET functions
 //
-function getFullSnackInformation(callback){
-    axios.get('/showSnacks')
-        .then(function (snacks){
-            var snacksobj = JSON.stringify(snacks.data).slice(1,-1);
-            callback(snacksobj);
-        })
-}
-
 function getMovieInformation(callback){
     axios.get('/showMovie')
         .then(function (array) {
             callback(array)
         })
+        .catch(function (error) {
+            // Error
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.log(error.request);
+            }
+        });
 }
 
 function getSpecificSnack(snackId, callback) {
@@ -25,6 +29,18 @@ function getSpecificSnack(snackId, callback) {
         .then(function (specificSnack){
             callback(specificSnack)
         })
+        .catch(function (error) {
+            // Error
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.log(error.request);
+            }
+        });
 }
 
 //
