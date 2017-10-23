@@ -37,6 +37,11 @@ h1{
     color: rgb(204, 1, 11);
 }
 
+h2, h3{
+    color: white;
+    text-align: center;
+}
+
 h4, h5{
     text-align: center;
     color: black;
@@ -57,6 +62,14 @@ p{
     color: rgb(162, 2, 10);
     padding-bottom: 2%;
 
+}
+.error404-box{
+    width: 60%;
+    margin:0 auto !important;
+}
+
+.back-home{
+    margin:0 auto !important;
 }
 
 #movieBtn{
