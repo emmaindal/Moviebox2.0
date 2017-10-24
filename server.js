@@ -12,27 +12,21 @@ app.use(express.static('./public/client'));
 //
 // Routes for API.
 //
-app.get('/showSnacks', function (req, res) {
+app.get('/getSnacks', function (req, res) {
     // shows all available snacks
     matapi.findSnacks(function (snacks) {
         res.send(snacks);
     })
 });
 
-app.get('/showMovie', function (req, res) {
+app.get('/getMovie', function (req, res) {
     // generates and displays one movie
     filmapi.findMovie(function (data) {
         res.send(data);
     })
 });
 
-app.get('/showSnacks', function (req, res) {
-    matapi.findSnacks(function (data){
-        res.send(data);
-    })
-});
-
-app.get('/showSnacks/:snack', function (req, res) {
+app.get('/getSnacks/:snack', function (req, res) {
     // sparar ID från URL
     var snackid = req.params.snack;
     // generar och returnerar specific snack beroende på ID
@@ -41,6 +35,8 @@ app.get('/showSnacks/:snack', function (req, res) {
     })
 });
 
+
+//routes
 
 app.get('/',function(req,res){
     res.sendFile(path.join(__dirname+'/public/client/views/index.html'));

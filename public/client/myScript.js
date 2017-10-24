@@ -6,7 +6,7 @@ $(".button-collapse").sideNav();
 // AXIOS.GET functions
 //
 function getMovieInformation(callback){
-    axios.get('/showMovie')
+    axios.get('/getMovie')
         .then(function (array) {
             callback(array)
         })
@@ -25,7 +25,7 @@ function getMovieInformation(callback){
 }
 
 function getSpecificSnack(snackId, callback) {
-    axios.get('/showSnacks/' + snackId)
+    axios.get('/getSnacks/' + snackId)
         .then(function (specificSnack){
             callback(specificSnack)
         })
@@ -157,7 +157,7 @@ function generateMovieHTML(movie, youtubeId) {
     var urlPath = "https://www.youtube.com/embed/" + youtubeId;
     var trailer = document.getElementById('trailer');
     trailer.src = urlPath;
-    return  '<h5> Rekommenderad film </h5>' +
+    return  '<h5> Kvällens film </h5>' +
         '<h6 id="movieTitle"> Titel: ' + movie.Title + '</h6>' +
         '<h6 id="movieYear"> År: ' + movie.Year + '</h6>'+
         '<h6 id="movieGenre"> Genre: ' + movie.Genre + '</h6>' +
@@ -165,7 +165,7 @@ function generateMovieHTML(movie, youtubeId) {
 }
 
 function generateSnacksHTML(response) {
-    return  '<h5> Rekommenderat filmsnacks: </h5>' +
+    return  '<h5> Kvällens filmsnacks </h5>' +
         '<h6>' + response + '</h6>';
 }
 
@@ -178,4 +178,3 @@ function updateMovieHTML(movie, youtubeId) {
     document.getElementById("movieGenre").innerHTML = 'Genre: ' + movie.Genre;
     document.getElementById("moviePlot").innerHTML = 'Handling: ' + movie.Plot;
 }
-
