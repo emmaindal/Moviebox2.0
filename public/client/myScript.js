@@ -48,7 +48,11 @@ function getSpecificSnack(snackId, callback) {
 //
 movieBtn.addEventListener('click', function (event) {
     var displayMovieElement = document.getElementById('movieElement');
+    var displayTrailerElement = document.getElementById('trailer');
+    var displaySnackElement = document.getElementById('snacksElement');
+    displayTrailerElement.src = '';
     displayMovieElement.innerHTML = '';
+    displaySnackElement.innerHTML = '';
 
     $('.modal').modal();
     getMovieInformation(function (array) {
@@ -58,6 +62,9 @@ movieBtn.addEventListener('click', function (event) {
 });
 
 newMovie.addEventListener('click', function (event) {
+    var disableButton = document.getElementById("div1");
+    disableButton.className += " disabled";
+    console.log(disableButton);
     // Axios request from snack and Movie
     getMovieInformation(function(array){
         // Updates the Movie Information
