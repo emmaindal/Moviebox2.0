@@ -62,8 +62,8 @@ movieBtn.addEventListener('click', function (event) {
 });
 
 newMovie.addEventListener('click', function (event) {
-    var disableButton = document.getElementById("div1");
-    disableButton.className += " disabled";
+    var disableButton = document.getElementById("newMovie");
+    disableButton.classList.add("disabled");
     console.log(disableButton);
     // Axios request from snack and Movie
     getMovieInformation(function(array){
@@ -178,8 +178,9 @@ function generateSnacksHTML(response) {
 
 function updateMovieHTML(movie, youtubeId) {
     var trailer = document.getElementById('trailer');
+    var enableButton = document.getElementById('newMovie');
+    enableButton.classList.remove("disabled");
     trailer.src = "https://www.youtube.com/embed/" + youtubeId;
-
     document.getElementById("movieTitle").innerHTML = 'Titel: ' + movie.Title;
     document.getElementById("movieYear").innerHTML = 'År: ' + movie.Year;
     document.getElementById("movieGenre").innerHTML = 'Genre: ' + movie.Genre;
