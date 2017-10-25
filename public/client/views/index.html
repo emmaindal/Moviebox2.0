@@ -15,19 +15,19 @@
 
 </head>
 <body>
-<div class="container">
+    <div class="container">
     <nav>
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">MOVIEBOX</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/">HEM</a></li>
-                <li><a href="/about">OM OSS</a></li>
-                <li><a href="/docs">DOKUMENTATION</a></li>
-                <li><a href="/contact">KONTAKT</a></li>
+                <li><a title="Filmtips" href="/">FILMTIPS</a></li>
+                <li><a title="Om oss" href="/about">OM OSS</a></li>
+                <li><a title="Dokumentation" href="/docs">DOKUMENTATION</a></li>
+                <li><a title="Kontakt" href="/contact">KONTAKT</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="/">HEM</a></li>
+                <li><a href="/">FILMTIPS</a></li>
                 <li><a href="/about">OM OSS</a></li>
                 <li><a href="/docs">DOKUMENTATION</a></li>
                 <li><a href="/contact">KONTAKT</a></li>
@@ -56,32 +56,25 @@
                 <div id="snacksElement">
 
                 </div>
-                <div>
-                    <ul class="collapsible z-depth-0" data-collapsible="accordion">
-                        <li>
-                            <!-- Dölja trailer bakom knapp
-                            <div class="collapsible-header"><button id="collapsible-btn" type="button" name="button" class="waves-effect waves-light btn black">Visa Trailer</button></div>
+                <div class="video-container">
 
-                           <div class="collapsible-body">-->
-                            <iframe  id="trailer" width="550" height="405" src="" frameborder="0" allowfullscreen></iframe>
-                            <!-- </div>-->
-                        </li>
-                    </ul>
+                <iframe  id="trailer" width="550" height="405" src="" frameborder="0" allowfullscreen></iframe>
+
                 </div>
             </div>
             <div class="modal-footer">
                 <button id="newMovie"  type="button" name="button" class="waves-effect waves-light btn">NY FILM</button>
-                <button id="newSnack"  type="button" name="button" class="waves-effect waves-light btn">Snackstips!</button>
+                <button id="newSnack"  type="button" name="button" class="waves-effect waves-light orange darken-2 btn">SNACKSTIPS!</button>
             </div>
         </div>
     </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="myScript.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="myScript.js"></script>
 
 
 </body>
