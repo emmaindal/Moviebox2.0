@@ -43,32 +43,31 @@
                     <p>Har du frågor eller funderingar kring vår tjänst MOVIEBOX?
                     Tveka inte på att kontakta oss i formuläret nedan.</p>
                     <div class="row">
-                        <form class="col s12">
+                        <form class="col s12" action="mailto:hello@moviebox.com" method="post" enctype="text/plain">
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input id="last_name" type="text" class="validate">
-                                    <label for="last_name">Förnamn</label>
+                                    <input id="first_name" name="firstname" type="text" class="validate">
+                                    <label for="first_name">Förnamn</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input id="last_name" type="text" class="validate">
+                                    <input id="last_name" name="lastname" type="text" class="validate">
                                     <label for="last_name">Efternamn</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                    <textarea id="textarea1" name="message" class="materialize-textarea"></textarea>
                                     <label for="textarea1">Skriv ditt meddelande här...</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="email" type="email" class="validate">
+                                    <input id="email" name="email" type="email" class="validate">
                                     <label for="email">Email</label>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <button class="btn waves-effect waves-light red darken-2" type="submit" name="action">Skicka
-                                </button>
+                                <div class="row">
+                                    <button class="btn waves-effect waves-light red darken-2" type="submit" value="send">Skicka</button>
+                                </div>
                             </div>
                         </form>
                     </div>
