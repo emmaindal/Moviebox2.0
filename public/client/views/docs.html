@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>MOVIEBOX</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,27 +16,27 @@
 </head>
 <body>
     <div class="container">
-    <nav>
-        <div class="nav-wrapper">
-            <a href="/" class="brand-logo">MOVIEBOX</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a title="Filmtips" href="/">FILMTIPS</a></li>
-                <li><a title="Om oss" href="/about">OM OSS</a></li>
-                <li><a title="Dokumentation" href="/docs">DOKUMENTATION</a></li>
-                <li><a title="Kontakt" href="/contact">KONTAKT</a></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="/">FILMTIPS</a></li>
-                <li><a href="/about">OM OSS</a></li>
-                <li><a href="/docs">DOKUMENTATION</a></li>
-                <li><a href="/contact">KONTAKT</a></li>
-            </ul>
-        </div>
-    </nav>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">MOVIEBOX</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a title="Filmtips" href="/">FILMTIPS</a></li>
+                    <li><a title="Om oss" href="/about">OM OSS</a></li>
+                    <li><a title="Dokumentation" href="/docs">DOKUMENTATION</a></li>
+                    <li><a title="Kontakt" href="/contact">KONTAKT</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="/">FILMTIPS</a></li>
+                    <li><a href="/about">OM OSS</a></li>
+                    <li><a href="/docs">DOKUMENTATION</a></li>
+                    <li><a href="/contact">KONTAKT</a></li>
+                </ul>
+            </div>
+        </nav>
     <div class="row">
         <div class="col s12">
-            <h1 class="center-align animated bounceInDown">WEBB-API</h1>
+            <h1 class="center-align animated bounceInDown">DOKUMENTATION</h1>
             <hr width="400">
 
             <section class="info-box z-depth-5">
@@ -42,7 +44,7 @@
               på film och tillhörande snacks.</p>
 
               <h4>Metoder</h4>
-              <h6>GET/showSnacks</h6>
+              <h6>GET/getSnacks</h6>
               <p>Denna funktion visar all data som hämtas ifrån matapi.se/foodstuff, denna data kan användas till att rendera ut lämpligt snacks till en specifik film.
                 Det kan göras genom input av ett ID som varje snacks har. </p>
               <h4>Exempel:</h4>
@@ -70,11 +72,11 @@
               </div>
               <p>Med input av ID:</p>
               <p>Input-id: 1864</p>
-              <p> http://localhost:3000/showSnacks/1864</p>
+              <p> http://localhost:3000/getSnacks/1864</p>
 
                 <p>{Karameller syrliga}</p>
 
-              <h6>GET/showMovie</h6>
+              <h6>GET/getMovie</h6>
               <p>Denna funktion visar upp en slumpmässigt vald film med tillhörande information. Kan användas som utvecklaren vill skapa en applikation där den visar upp olika filmval.
 
               </p>

@@ -36,7 +36,11 @@ h1, h5{
     color: rgb(204, 1, 11);
 }
 
+<<<<<<< HEAD
 .error, h3, h4, h5{
+=======
+h2, h3, h4, h5{
+>>>>>>> master
     color: white;
     text-align: center;
 }
@@ -119,4 +123,5 @@ video-container {
         font-size: 14px;
         padding: 0;
     }
+
 }
