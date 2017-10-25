@@ -36,7 +36,7 @@ h1, h5{
     color: rgb(204, 1, 11);
 }
 
-h3, h4, h5{
+h2, h3, h4, h5{
     color: white;
     text-align: center;
 }
@@ -119,4 +119,5 @@ video-container {
         font-size: 14px;
         padding: 0;
     }
+
 }
