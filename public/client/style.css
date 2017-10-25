@@ -36,16 +36,12 @@ h1, h5{
     color: rgb(204, 1, 11);
 }
 
-<<<<<<< HEAD
 h3, h4, h5{
-=======
-h2, h3{
     color: white;
     text-align: center;
 }
 
 h4, h5{
->>>>>>> 0d8d25f4d498b6d857c9dd246baf24ff06113594
     text-align: center;
     padding-bottom: 2%;
 }
@@ -82,7 +78,7 @@ p{
 }
 
 .ex{
-  background-color: #eee
+  background-color: #eee;
 }
 
 #movieBtn{
@@ -97,16 +93,6 @@ p{
     background-color: rgb(204, 1, 11);
 }
 
-@media only screen and (max-width: 980px){
-    .info-box{
-        width: 80%;
-    }
-    .modal.modal-footer.btn {
-        width: 40%;
-        font-size: 14px;
-        padding: 0;
-    }
-}
 
 video-container {
     position: relative;
@@ -122,4 +108,15 @@ video-container {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+@media only screen and (max-width: 980px){
+    .info-box{
+        width: 80%;
+    }
+    .modal.modal-footer.btn {
+        width: 40%;
+        font-size: 14px;
+        padding: 0;
+    }
 }
