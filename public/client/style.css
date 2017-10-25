@@ -23,6 +23,7 @@ nav{
     padding-top: 3%;
 }
 
+
 .modal-content{
     text-align: center;
     padding-bottom: 20%;
@@ -34,9 +35,10 @@ nav{
 
 h1, h5{
     color: rgb(204, 1, 11);
+    text-align: center;
 }
 
-.error, h3, h4, h5{
+.error, h3, h4{
     color: white;
     text-align: center;
 }
@@ -118,6 +120,15 @@ video-container {
         width: 40%;
         font-size: 14px;
         padding: 0;
+    }
+
+    #movieBtn{
+        width: 165px;
+        height: 165px;
+    }
+
+    .page-title{
+        font-size: 42px;
     }
 
 }
