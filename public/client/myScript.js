@@ -56,7 +56,8 @@ movieBtn.addEventListener('click', function (event) {
 
     $('.modal').modal();
     getMovieInformation(function (array) {
-        clickNewSnack(array.data.movieInfo.Genre);
+        var randomGenre = randomGenreFromMovie(array.data.movieInfo.Genre);
+        clickNewSnack(randomGenre);
         displayMovieElement.innerHTML = generateMovieHTML(array.data.movieInfo, array.data.youtubeId);
     })
 });
@@ -73,7 +74,8 @@ newMovie.addEventListener('click', function (event) {
         var displaySnacksElement = document.getElementById('snacksElement');
         displaySnacksElement.innerHTML = "";
         // Listens for "give me snack" button
-        clickNewSnack(array.data.movieInfo.Genre);
+        var randomGenre = randomGenreFromMovie(array.data.movieInfo.Genre);
+        clickNewSnack(randomGenre);
     })
 });
 
@@ -81,34 +83,11 @@ newMovie.addEventListener('click', function (event) {
 //
 // Snack depending on genre functions
 //
-function clickNewSnack(movieGenre) {
-    // Generates a new snack
-    //listens for click
-    newSnack.addEventListener('click', function (event) {
-        randomSnackFromGenre(movieGenre);
-    });
-}
-
-function randomSnackFromGenre(genreList){
-    // Get a random snackID depending on Genre
-    var snackId = selectSnackIdFromGenre(genreList);
-
-    getSpecificSnack(snackId, function (specificSnack) {
-        // displays the snack
-        var snack = JSON.stringify(specificSnack.data).slice(1, -1);
-        var displaySnacksElement = document.getElementById('snacksElement');
-        displaySnacksElement.innerHTML = generateSnacksHTML(snack);
-    })
-}
-
-function generateRandomId(id) {
-    // Selects one random snack for each movie
-    return id[Math.floor(Math.random()*id.length)];
-}
 function randomGenreFromMovie(genre) {
     // Selects one random genre from the total movie genres
     var genreList = genre.split(" ");
     var randomGenre = genreList[Math.floor(Math.random()*genreList.length)];
+    console.log(randomGenre, genreList);
     // Genre might contain "," if its in the middle of the list. The If solves this
     if (randomGenre.includes(",") === true) {
         return randomGenre.slice(0, -1);
@@ -116,8 +95,33 @@ function randomGenreFromMovie(genre) {
     return randomGenre
 }
 
-function selectSnackIdFromGenre(movieGenres){
-    var genre = randomGenreFromMovie(movieGenres);
+function clickNewSnack(genre) {
+    // Generates a new snack
+    //listens for click
+    newSnack.addEventListener('click', function (event) {
+        randomSnackFromGenre(genre);
+    });
+}
+
+function randomSnackFromGenre(genre){
+    // Get a random snackID depending on Genre
+    var snackId = selectSnackIdFromGenre(genre);
+
+    getSpecificSnack(snackId, function (specificSnack) {
+        // displays the snack
+        var snack = JSON.stringify(specificSnack.data).slice(1, -1);
+        var displaySnacksElement = document.getElementById('snacksElement');
+        displaySnacksElement.innerHTML = generateSnacksHTML(snack, genre);
+    })
+}
+
+function generateRandomId(id) {
+    // Selects one random snack for each movie
+    return id[Math.floor(Math.random()*id.length)];
+}
+
+function selectSnackIdFromGenre(genre){
+    console.log(genre);
     // Different snacks depending on genre
     if (genre === 'Action'){
         var snacksIdList = ['1581', '1580', '1583', '1584', '1585', '1848'];
@@ -171,9 +175,10 @@ function generateMovieHTML(movie, youtubeId) {
         '<h6 id="moviePlot"> Handling: ' + movie.Plot + '</h6>';
 }
 
-function generateSnacksHTML(response) {
-    return  '<h5> Kvällens filmsnacks </h5>' +
-        '<h6>' + response + '</h6>';
+function generateSnacksHTML(snack, genre) {
+    genre.toLowerCase();
+    return  '<h5> Till ' + genre + ' rekommenderar vi </h5>' +
+        '<h6>' + snack + '</h6>';
 }
 
 function updateMovieHTML(movie, youtubeId) {
@@ -181,6 +186,7 @@ function updateMovieHTML(movie, youtubeId) {
     var enableButton = document.getElementById('newMovie');
     enableButton.classList.remove("disabled");
     trailer.src = "https://www.youtube.com/embed/" + youtubeId;
+
     document.getElementById("movieTitle").innerHTML = 'Titel: ' + movie.Title;
     document.getElementById("movieYear").innerHTML = 'År: ' + movie.Year;
     document.getElementById("movieGenre").innerHTML = 'Genre: ' + movie.Genre;
