@@ -1,0 +1,62 @@
+FORMAT: 1A
+HOST: localhost:3000/
+
+# Moviebox
+
+Moviebox API är till för utvecklare som vill hämta ut en slumpad film. Samt för de utvecklare som vill hämta ut matdata eller ett specifikt matobjekt.
+
+## Hämta Mat  [/getSnacks]
+
+### Lista all mat [GET]
+
++ Response 200 (application/json)
+
+            [
+                {
+                    "name": "rågmjöl",
+                    "number": 1
+                }, {
+                    "name": "vetemjöl",
+                    "number": 2
+                }, {
+                    "name": "popcorn",
+                    "number": 3
+                }, {
+                    "name": "rostade saltade kikärtor",
+                    "number": 4
+                }
+            ]
+
+## Hämta specifikt matobjekt  [/getSnacks/{number}]
+Går du till ändpunkten /getSnacks/ och lägger till ett id som exempelvis 1 (/getSnacks/1). Så dår du svar med det specifika id-namnet. 
+
+### Hämta specifikt matobjekt [GET]
+
+
++ Response 200 (application/json)
+
+            [
+                {
+                    "name": name
+                }
+            ]
+
+## Hämta slumpad film [/getMovie]
+
+### Hämta slumpad film [GET]
+
++ Response 200 (application/json)
+    
+        {
+            "youtubeId": "CJAejVCn4sU",
+            "movieInfo": {
+                "Title": "Liberty Heights",
+                "Year": "1999",
+                "Genre": "Drama, Music, Romance",
+                "Plot": "Anti-Semitism, race relations, coming of age, and fathers and sons: in Baltimore from fall, 1954, to fall, 1955. Racial integration comes to the high school, TV is killing burlesque, and ..."
+            }
+        }
+
+
+
+
