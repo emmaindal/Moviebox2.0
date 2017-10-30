@@ -16,9 +16,9 @@ exports.search = function(movieName, movieYear, callback) {
     }, function (err, data) {
         if (err) {
             console.error('Error: ' + err);
+            callback('Tyvärr fungerar inte vår trailer sökning just nu, försök igen senare.');
         }
         if (data) {
-            console.log('Youtube search is running');
             callback(data)
         }
     })

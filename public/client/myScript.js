@@ -65,7 +65,6 @@ movieBtn.addEventListener('click', function (event) {
 newMovie.addEventListener('click', function (event) {
     var disableButton = document.getElementById("newMovie");
     disableButton.classList.add("disabled");
-    console.log(disableButton);
     // Axios request from snack and Movie
     getMovieInformation(function(array){
         // Updates the Movie Information
@@ -87,7 +86,6 @@ function randomGenreFromMovie(genre) {
     // Selects one random genre from the total movie genres
     var genreList = genre.split(" ");
     var randomGenre = genreList[Math.floor(Math.random()*genreList.length)];
-    console.log(randomGenre, genreList);
     // Genre might contain "," if its in the middle of the list. The If solves this
     if (randomGenre.includes(",") === true) {
         return randomGenre.slice(0, -1);
@@ -106,7 +104,7 @@ function clickNewSnack(genre) {
 function randomSnackFromGenre(genre){
     // Get a random snackID depending on Genre
     var snackId = selectSnackIdFromGenre(genre);
-
+    console.log(genre);
     getSpecificSnack(snackId, function (specificSnack) {
         // displays the snack
         var snack = JSON.stringify(specificSnack.data).slice(1, -1);
@@ -121,7 +119,6 @@ function generateRandomId(id) {
 }
 
 function selectSnackIdFromGenre(genre){
-    console.log(genre);
     // Different snacks depending on genre
     if (genre === 'Action'){
         var snacksIdList = ['1581', '1580', '1583', '1584', '1585', '1848'];

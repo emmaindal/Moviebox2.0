@@ -47,6 +47,7 @@ exports.findMovie = function (callback) {
                     console.log(error.response.data);
                     console.log(error.response.status);
                     console.log(error.response.headers);
+                    callback('Tyvärr har vi ett problem att nå OMDB just nu, försök igen senare.');
                     findMovie();
                 } else if (error.request) {
                     // The request was made but no response was received
