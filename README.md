@@ -4,7 +4,7 @@
 En mashup-tjänst som är skriven i node.js, applikationen hjälper dig att välja film och snacks till lördagsmyset.
 
 
-Komma igång
+Kom igång
 
 1. Ladda ner zip-filen från GitHub, spara på valfritt ställe på datorn. 
 
@@ -12,8 +12,8 @@ Komma igång
 
 3. För Mac Skriv in:
 	1. cd- [sökvägen till Moviebox-mappen]
-	2.npm install
-	3.node server.js  
+	2. npm install
+	3. node server.js  
 	
 4. För Windows
 	1. cd- [Hela sökvägen till Moviebox-mappen]
