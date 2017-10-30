@@ -34,7 +34,7 @@ Därefter startar appen på localhost:3000, då öppnar du webbläsaren och skri
 
 Byggt med
 Node.js
-Materialized
+MaterializeCSS
 JavaScript
 
 Författare
