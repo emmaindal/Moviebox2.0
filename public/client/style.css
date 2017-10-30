@@ -23,6 +23,15 @@ nav{
     padding-top: 3%;
 }
 
+.info-box-wide{
+    margin:0 auto;
+    width: 70%;
+    background-color: white;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3%;
+    padding-bottom: 1.5%;
+}
 
 .modal-content{
     text-align: center;
@@ -50,6 +59,9 @@ h4, h5{
 
 .blue-text{
     text-decoration: none;
+}
+.green-get{
+    color: #1de9b6;
 }
 
 h6{
