@@ -20,6 +20,7 @@ exports.findMovie = function (callback) {
         axios.get(url)
             .then(function (response) {
                 // Sorterar ut relevanta filmer ur listan
+
                 if (response.data.imdbRating >= 6.5 && response.data.Year > 1990) {
                     getTrailer(response.data, function (youtubeId) {
                         // Skapar listor med relevant information att skicka till front-end
@@ -34,6 +35,7 @@ exports.findMovie = function (callback) {
                             movieInfo: movieArray
                         };
                         callback(array);
+            
                     })
 
                 } else {

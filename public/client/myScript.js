@@ -54,12 +54,23 @@ movieBtn.addEventListener('click', function (event) {
     displayMovieElement.innerHTML = '';
     displaySnackElement.innerHTML = '';
 
-    $('.modal').modal();
+    var removePulseClass = document.getElementById("movieBtn");
+    removePulseClass.classList.remove("pulse");
+
+    $('.modal').modal({
+        complete: function() {
+            var addPulseClass = document.getElementById("movieBtn");
+            addPulseClass.classList.add("pulse");
+         } // Callback for Modal close
+    }
+    );
+
     getMovieInformation(function (array) {
         var randomGenre = randomGenreFromMovie(array.data.movieInfo.Genre);
         clickNewSnack(randomGenre);
         displayMovieElement.innerHTML = generateMovieHTML(array.data.movieInfo, array.data.youtubeId);
     })
+
 });
 
 newMovie.addEventListener('click', function (event) {
@@ -90,13 +101,16 @@ function randomGenreFromMovie(genre) {
     if (randomGenre.includes(",") === true) {
         return randomGenre.slice(0, -1);
     }
+
     return randomGenre
 }
 
-function clickNewSnack(genre) {
+function clickNewSnack(randomGenre) {
     // Generates a new snack
     //listens for click
     newSnack.addEventListener('click', function (event) {
+        var genre = randomGenre;
+        randomGenre = [];
         randomSnackFromGenre(genre);
     });
 }
@@ -104,7 +118,6 @@ function clickNewSnack(genre) {
 function randomSnackFromGenre(genre){
     // Get a random snackID depending on Genre
     var snackId = selectSnackIdFromGenre(genre);
-    console.log(genre);
     getSpecificSnack(snackId, function (specificSnack) {
         // displays the snack
         var snack = JSON.stringify(specificSnack.data).slice(1, -1);
@@ -124,39 +137,37 @@ function selectSnackIdFromGenre(genre){
         var snacksIdList = ['1581', '1580', '1583', '1584', '1585', '1848'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Drama'){
-        snacksIdList = ['1579', '1583', '1848'];
+        var snacksIdList = ['1579', '1583', '1848'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Comedy'){
-        snacksIdList = ['1581', '1582', '1583', '1584', '1848', '1849'];
+        var snacksIdList = ['1581', '1582', '1583', '1584', '1848', '1849'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Thriller'){
-        snacksIdList = [ '1583', '1853', '1852'];
+        var snacksIdList = [ '1583', '1853', '1852'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Romance'){
-        snacksIdList = ['1583', '526', '2052', '2246', '1858'];
+        var snacksIdList = ['1583', '526', '2052', '2246', '1858'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Sci-Fi'){
-        snacksIdList = ['1580', '1582', '1583', '1875'];
+        var snacksIdList = ['1580', '1582', '1583', '1875'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Crime'){
-        snacksIdList = ['1582', '1583', '1585'];
+        var snacksIdList = ['1582', '1583', '1585'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Adventure'){
-        snacksIdList = ['1580', '1583', '1584', '1848'];
+        var snacksIdList = ['1580', '1583', '1584', '1848'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Sport'){
-        snacksIdList = ['1581', '1583', '1584', '1585'];
+        var snacksIdList = ['1581', '1583', '1584', '1585'];
         return generateRandomId(snacksIdList)
     } else if (genre === 'Documentary'){
-        snacksIdList = ['1579', '1583', '1585', '1875'];
+        var snacksIdList = ['1579', '1583', '1585', '1875'];
         return generateRandomId(snacksIdList)
     } else {
-        snacksIdList = ['1583', '1584', '1585', '1875', '2246'];
+        var snacksIdList = ['1583', '1584', '1585', '1875', '2246'];
         return generateRandomId(snacksIdList)
     }
 }
-
-
 
 //
 // HTML Generating functions

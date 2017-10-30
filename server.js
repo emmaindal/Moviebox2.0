@@ -8,6 +8,8 @@ var filmapi = require('./filmapi.js');
 var matapi = require('./matapi.js');
 
 app.use(express.static('./public/client'));
+app.use(express.static('./node_modules/materialize-css/dist'));
+app.use(express.static('./node_modules/axios'));
 
 //
 // Routes for API.
