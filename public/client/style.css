@@ -59,6 +59,7 @@ h4, h5{
 
 .blue-text{
     text-decoration: none;
+    font-size: 30px;
 }
 .green-get{
     color: #1de9b6;
@@ -107,7 +108,6 @@ p{
     background-color: rgb(204, 1, 11);
 }
 
-
 video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -143,4 +143,20 @@ video-container {
         font-size: 42px;
     }
 
+    .info-box-wide{
+        width: 95%;
+    }
+
+    .blue-text{
+        text-decoration: none;
+        font-size: 20px;
+    }
+    .green-get{
+        color: #1de9b6;
+        font-size: 20px;
+    }
+
+    .docs-h2{
+        font-size: 20px
+    }
 }
