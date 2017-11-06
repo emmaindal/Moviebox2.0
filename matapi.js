@@ -21,9 +21,9 @@ exports.findSnacks = function (callback) {
                 // Error
                 if (error.response) {
                     // The request was made and the server responded with a status code
-                    console.log(error.response.data);
+                    //console.log(error.response.data);
                     console.log(error.response.status);
-                    console.log(error.response.headers);
+                    //console.log(error.response.headers);
                     callback('Tyvärr har vi ett problem att nå Matapi just nu.');
                 } else if (error.request) {
                     // The request was made but no response was received
@@ -46,9 +46,9 @@ exports.findSpecificSnack = function (snackid, callback) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 callback('Tyvärr har vi ett problem att nå Matapi just nu.');
-                console.log(error.response.data);
+                //console.log(error.response.data);
                 console.log(error.response.status);
-                console.log(error.response.headers);
+                //console.log(error.response.headers);
             } else if (error.request) {
                 // The request was made but no response was received
                 console.log(error.request);
